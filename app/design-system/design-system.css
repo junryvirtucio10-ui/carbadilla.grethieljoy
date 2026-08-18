@@ -4,6 +4,7 @@
   background: var(--gj-studio-50);
   color: var(--gj-ink);
   font-family: var(--gj-body);
+  font-size: 16px;
 }
 
 .system-page *,
@@ -57,7 +58,7 @@
 .component-label {
   margin: 0;
   font-family: var(--gj-utility);
-  font-size: 0.68rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -225,13 +226,13 @@
 .palette-preview code {
   margin-top: 0.3rem;
   font-family: var(--gj-utility);
-  font-size: 0.72rem;
+  font-size: 1rem;
 }
 
 .palette-preview li p {
   margin: 0.75rem 0 0;
   color: var(--gj-cocoa-700);
-  font-size: 0.78rem;
+  font-size: 1rem;
   line-height: 1.45;
 }
 
@@ -279,7 +280,7 @@
 
 .system-principles dt {
   font-family: var(--gj-utility);
-  font-size: 0.68rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -319,7 +320,7 @@
 .voice-grid span,
 .form-panel small {
   font-family: var(--gj-utility);
-  font-size: 0.68rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -338,7 +339,7 @@
 .contrast-rules p {
   max-width: 34ch;
   margin: 0.8rem 0 0;
-  font-size: 0.88rem;
+  font-size: 1rem;
   line-height: 1.5;
 }
 
@@ -479,7 +480,7 @@
 
 .utility-specimen code {
   overflow-wrap: anywhere;
-  font-size: 0.72rem;
+  font-size: 1rem;
 }
 
 .type-scale {
@@ -498,7 +499,7 @@
 .type-scale code,
 .type-scale span {
   color: var(--gj-cocoa-700);
-  font-size: 0.8rem;
+  font-size: 1rem;
 }
 
 .layout-section {
@@ -532,7 +533,7 @@
   background: rgba(255, 199, 0, 0.4);
   color: var(--gj-brown-950);
   font-family: var(--gj-utility);
-  font-size: 0.65rem;
+  font-size: 1rem;
 }
 
 .layout-facts {
@@ -583,7 +584,7 @@
 }
 
 .spacing-scale code {
-  font-size: 0.72rem;
+  font-size: 1rem;
 }
 
 .component-section {
@@ -628,7 +629,7 @@
   padding: 0.8rem 1rem;
   border: 2px solid var(--gj-brown-950);
   font-family: var(--gj-utility);
-  font-size: 0.72rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -675,7 +676,7 @@
   border: 1px solid var(--gj-line);
   border-radius: var(--gj-radius-pill);
   background: var(--gj-gold-100);
-  font-size: 0.82rem;
+  font-size: 1rem;
 }
 
 .system-tags .tag-dark {
@@ -862,7 +863,7 @@
 .system-footer > p {
   margin: 0;
   font-family: var(--gj-utility);
-  font-size: 0.7rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -1000,7 +1001,7 @@
 
   .grid-demo span {
     overflow: hidden;
-    font-size: 0;
+    color: transparent;
   }
 
   .project-card-demo {

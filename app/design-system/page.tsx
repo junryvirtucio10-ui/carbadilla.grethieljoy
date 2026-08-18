@@ -47,8 +47,8 @@ const typeScale = [
   { token: "H3", size: "28px / 1.75rem", use: "Card title" },
   { token: "Lead", size: "20px / 1.25rem", use: "Opening copy" },
   { token: "Body", size: "16px / 1rem", use: "Reading text" },
-  { token: "Small", size: "14px / .875rem", use: "Supporting text" },
-  { token: "Utility", size: "11px / .6875rem", use: "Labels and data" },
+  { token: "Supporting", size: "16px / 1rem", use: "Supporting text" },
+  { token: "Utility", size: "16px / 1rem", use: "Labels and data" },
 ];
 
 const spacing = [4, 8, 12, 16, 24, 32, 48, 64, 96, 128];
@@ -336,7 +336,7 @@ export default function DesignSystemPage() {
           <p className="system-section-label">Grethiel Joy / Portfolio system</p>
           <h2>Built in cocoa.<br /><span>Signed in gold.</span></h2>
         </div>
-        <p>Version 1.0 · August 2026</p>
+        <p>Version 1.1 · August 2026</p>
         <a href="/">Return to portfolio <span aria-hidden="true">↗</span></a>
       </footer>
     </main>

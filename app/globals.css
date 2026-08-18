@@ -66,6 +66,7 @@ body {
   background: var(--silk);
   color: var(--ink);
   font-family: var(--body);
+  font-size: 16px;
 }
 
 a {
@@ -101,7 +102,7 @@ a {
   background: var(--ink);
   color: var(--porcelain);
   font-family: var(--utility);
-  font-size: 0.61rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.18em;
   text-align: center;
@@ -110,7 +111,7 @@ a {
 
 .site-header {
   position: absolute;
-  inset: 30px 0 auto;
+  inset: 39px 0 auto;
   z-index: 20;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -159,7 +160,7 @@ a {
 .tool-card span,
 .site-footer {
   font-family: var(--utility);
-  font-size: 0.62rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -191,7 +192,7 @@ a {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   min-height: 100svh;
-  padding: 165px 5vw 64px;
+  padding: 178px 5vw 64px;
   isolation: isolate;
   background:
     radial-gradient(circle at 16% 30%, rgba(231, 218, 195, 0.46), transparent 26%),
@@ -227,7 +228,7 @@ a {
 
 .hero-copy {
   z-index: 3;
-  grid-column: 1 / span 8;
+  grid-column: 1 / span 7;
   align-self: center;
   padding-top: 4vh;
 }
@@ -280,7 +281,7 @@ h1 span {
 
 .hero-intro p {
   margin: 0;
-  font-size: clamp(0.98rem, 1.2vw, 1.12rem);
+  font-size: clamp(1rem, 1.2vw, 1.12rem);
   line-height: 1.75;
 }
 
@@ -294,7 +295,7 @@ h1 span {
   border-top: 1px solid var(--champagne);
   border-bottom: 1px solid var(--champagne);
   font-family: var(--utility);
-  font-size: 0.65rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-decoration: none;
@@ -314,34 +315,79 @@ h1 span {
 .hero-art {
   position: relative;
   z-index: 2;
-  grid-column: 9 / 13;
+  grid-column: 7 / 13;
   grid-row: 1;
   align-self: center;
   justify-self: end;
-  width: min(28vw, 430px);
+  width: min(50vw, 760px);
+  height: min(47vw, 700px);
+}
+
+.hero-work-circle,
+.resume-portrait {
+  position: absolute;
+  overflow: hidden;
+  margin: 0;
+  border-radius: 50%;
+}
+
+.hero-work-circle {
+  top: 6%;
+  left: 0;
+  width: 66%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(197, 143, 21, 0.72);
+  background: var(--porcelain);
+  box-shadow:
+    0 24px 65px rgba(75, 57, 49, 0.14),
+    -13px 15px 0 rgba(255, 222, 89, 0.32);
+}
+
+.hero-work-circle::after {
+  position: absolute;
+  inset: 5%;
+  border: 1px solid rgba(255, 253, 248, 0.82);
+  border-radius: inherit;
+  content: "";
+}
+
+.hero-work-circle img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: saturate(0.72) sepia(0.13) brightness(1.06);
 }
 
 .resume-portrait {
-  width: 100%;
-  aspect-ratio: 0.76;
-  border: 1px solid var(--champagne);
-  border-radius: 50% 50% 46% 54% / 42% 44% 56% 58%;
-  background-color: var(--porcelain);
-  background-image: url("/resume-source.png");
-  background-position: 90% 0%;
-  background-repeat: no-repeat;
-  background-size: 335% auto;
+  z-index: 2;
+  top: 16%;
+  right: 0;
+  width: 59%;
+  aspect-ratio: 1;
+  padding: 0.72rem;
+  border: 3px solid var(--champagne-pale);
+  background: var(--ink);
   box-shadow:
-    0 28px 70px rgba(75, 57, 49, 0.18),
-    18px 20px 0 var(--champagne-pale);
-  filter: saturate(0.72) sepia(0.08);
+    0 28px 70px rgba(75, 57, 49, 0.22),
+    15px 18px 0 var(--champagne-pale);
+}
+
+.resume-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .hero-note {
   position: absolute;
-  right: -1rem;
-  bottom: -2.2rem;
-  width: min(16rem, 70%);
+  right: 1.5rem;
+  bottom: 2%;
+  z-index: 4;
+  width: min(18rem, 48%);
   margin: 0;
   padding: 1rem 1.15rem 1.25rem;
   border: 1px solid var(--champagne);
@@ -774,7 +820,7 @@ h1 span {
   border: 1px solid var(--champagne-pale);
   border-radius: 999px;
   color: var(--cocoa);
-  font-size: 0.86rem;
+  font-size: 1rem;
 }
 
 .skill-cloud li:nth-child(4n + 1) {
@@ -912,7 +958,7 @@ h1 span {
 .contact-links a span {
   grid-column: 1 / -1;
   font-family: var(--utility);
-  font-size: 0.62rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -1044,7 +1090,8 @@ h1 span {
   }
 
   .hero-art {
-    width: min(65vw, 430px);
+    width: min(92vw, 650px);
+    height: min(82vw, 610px);
     margin: 7rem auto 0;
   }
 
@@ -1132,7 +1179,7 @@ h1 span {
 
 @media (max-width: 650px) {
   .concept-ribbon {
-    font-size: 0.52rem;
+    font-size: 1rem;
     letter-spacing: 0.1em;
   }
 
@@ -1155,12 +1202,14 @@ h1 span {
   }
 
   .hero-art {
-    width: 78vw;
+    width: 100%;
+    height: min(96vw, 34rem);
   }
 
   .hero-note {
-    right: -0.2rem;
-    width: 74%;
+    right: 0;
+    bottom: -1.5rem;
+    width: min(19rem, 72%);
   }
 
   .profile-copy h2,

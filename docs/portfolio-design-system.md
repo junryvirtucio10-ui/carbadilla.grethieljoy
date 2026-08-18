@@ -60,10 +60,10 @@ The display face is uppercase, tightly spaced, and used for short headlines. The
 | H3 | `1.75rem` | Card title |
 | Lead | `1.25rem` | Opening copy |
 | Body | `1rem` | Reading text |
-| Small | `.875rem` | Supporting text |
-| Utility | `.6875rem` | Labels and data |
+| Supporting | `1rem` | Supporting text |
+| Utility | `1rem` | Labels and data |
 
-Body text uses a line height of 1.6–1.7 and a maximum measure of 65–70 characters.
+Body text uses a line height of 1.6–1.7 and a maximum measure of 65–70 characters. All visible text, including labels, captions, metadata, and navigation, has a hard minimum of 16px.
 
 ## Layout
 

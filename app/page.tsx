@@ -65,7 +65,7 @@ export default function Home() {
         Skip to content
       </a>
 
-      <p className="concept-ribbon">Portfolio foundation · brand system v1.0</p>
+      <p className="concept-ribbon">Portfolio · Brand system v1.1</p>
 
       <header className="site-header" aria-label="Primary navigation">
         <a className="wordmark" href="#top" aria-label="Grethiel Joy, home">
@@ -101,11 +101,17 @@ export default function Home() {
         </div>
 
         <div className="hero-art">
-          <div
-            className="resume-portrait"
-            role="img"
-            aria-label="Portrait of Grethiel Joy Carbadilla G."
-          />
+          <div className="hero-work-circle" aria-hidden="true">
+            <img src="/projects/direct-construction.png" alt="" />
+          </div>
+          <figure className="resume-portrait">
+            <img
+              src="/grethiel.png"
+              alt="Grethiel Joy Carbadilla G."
+              decoding="async"
+              fetchPriority="high"
+            />
+          </figure>
           <aside className="hero-note">
             <span>Design system signature</span>
             <p>Built in cocoa. Signed in gold.</p>
@@ -321,7 +327,7 @@ export default function Home() {
         <a className="wordmark" href="#top" aria-label="Back to the top">
           Grethiel Joy<span aria-hidden="true">.</span>
         </a>
-        <p>Portfolio design system · Version 1.0</p>
+        <p>Portfolio design system · Version 1.1</p>
         <p>Cebu, Philippines · Cocoa & gold</p>
       </footer>
     </main>
