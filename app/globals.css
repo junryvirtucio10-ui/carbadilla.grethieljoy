@@ -530,35 +530,28 @@ h1 span {
   aspect-ratio: 1.25;
 }
 
-.resume-project {
+.project-image-frame {
   position: absolute;
   inset: clamp(0.7rem, 1.3vw, 1.2rem);
-  background-color: var(--champagne-pale);
-  background-image: url("/resume-source.png");
-  background-repeat: no-repeat;
-  filter: saturate(0.78) sepia(0.08);
+  overflow: hidden;
+  background: var(--champagne-pale);
+}
+
+.project-image {
+  object-fit: cover;
+  object-position: top center;
+  filter: saturate(0.88) contrast(0.98);
   transition:
     transform 500ms ease,
     filter 500ms ease;
 }
 
-.resume-project-construction {
-  background-position: 0 92%;
-  background-size: 370% auto;
+.project-image-social {
+  object-position: center;
 }
 
-.resume-project-uk {
-  background-position: 50% 97%;
-  background-size: 370% auto;
-}
-
-.resume-project-social {
-  background-position: 91% 97%;
-  background-size: 370% auto;
-}
-
-.project:hover .resume-project {
-  filter: saturate(0.95);
+.project:hover .project-image {
+  filter: saturate(1) contrast(1);
   transform: scale(1.025);
 }
 

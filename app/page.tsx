@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const experience = [
   {
     company: "Tradie — formerly Pro Tradesmen Club",
@@ -153,21 +155,27 @@ export default function Home() {
         <div className="project-list">
           <article className="project project-featured">
             <figure className="project-visual">
-              <div
-                className="resume-project resume-project-construction"
-                role="img"
-                aria-label="Construction company website shown in Grethiel's resume"
-              />
-              <figcaption>WordPress website design</figcaption>
+              <div className="project-image-frame">
+                <Image
+                  className="project-image"
+                  src="/projects/direct-construction.png"
+                  alt="Full-page screenshot of the Direct Construction, Inc. WordPress website"
+                  fill
+                  sizes="(max-width: 1000px) 100vw, 66vw"
+                  quality={82}
+                />
+              </div>
+              <figcaption>WordPress website · Construction</figcaption>
             </figure>
             <div className="project-copy">
-              <p className="project-role">Website design</p>
-              <h3>Construction Website</h3>
+              <p className="project-role">WordPress design & build</p>
+              <h3>Direct Construction Website</h3>
               <p>
-                A construction company website designed with WordPress and
-                Elementor, with a clear structure and service-focused layout.
+                A service-focused WordPress website for a Cleveland contractor,
+                combining project galleries, trust signals, testimonials, and
+                clear enquiry paths.
               </p>
-              <ul aria-label="Construction Website tools">
+              <ul aria-label="Direct Construction Website tools">
                 <li>WordPress</li>
                 <li>Elementor</li>
                 <li>Responsive design</li>
@@ -178,48 +186,59 @@ export default function Home() {
           <div className="project-pair">
             <article className="project">
               <figure className="project-visual project-visual-tall">
-                <div
-                  className="resume-project resume-project-uk"
-                  role="img"
-                  aria-label="UK local service website shown in Grethiel's resume"
-                />
-                <figcaption>Web design & content</figcaption>
+                <div className="project-image-frame">
+                  <Image
+                    className="project-image"
+                    src="/projects/tradie.png"
+                    alt="Full-page screenshot of the Tradie growth website for UK trades businesses"
+                    fill
+                    sizes="(max-width: 650px) 100vw, 48vw"
+                    quality={82}
+                  />
+                </div>
+                <figcaption>Website design · Conversion content</figcaption>
               </figure>
               <div className="project-copy">
-                <p className="project-role">Web design</p>
-                <h3>UK Local Service Website</h3>
+                <p className="project-role">Website design & content</p>
+                <h3>Tradie Growth Website</h3>
                 <p>
-                  Website design updates, landing-page creation, user-focused
-                  layout improvements, social media support, and visual content.
+                  A bold sales-focused website for a UK trades business
+                  community, using strong calls to action, social proof, and
+                  conversion-led landing-page content.
                 </p>
-                <ul aria-label="UK Local Service Website work">
+                <ul aria-label="Tradie Growth Website work">
                   <li>Landing pages</li>
                   <li>Content</li>
-                  <li>Social media</li>
+                  <li>Conversion design</li>
                 </ul>
               </div>
             </article>
 
             <article className="project project-offset">
               <figure className="project-visual project-visual-square">
-                <div
-                  className="resume-project resume-project-social"
-                  role="img"
-                  aria-label="Social media management project shown in Grethiel's resume"
-                />
-                <figcaption>Social media management</figcaption>
+                <div className="project-image-frame">
+                  <Image
+                    className="project-image project-image-social"
+                    src="/projects/life-regeneration-church.png"
+                    alt="Life Regeneration Church Facebook page featuring Accelerated Favor campaign artwork"
+                    fill
+                    sizes="(max-width: 650px) 100vw, 42vw"
+                    quality={82}
+                  />
+                </div>
+                <figcaption>Social media · Campaign creative</figcaption>
               </figure>
               <div className="project-copy">
                 <p className="project-role">Digital content</p>
-                <h3>Social Media Management</h3>
+                <h3>Life Regeneration Church</h3>
                 <p>
-                  Social graphics, video reels, captions, and page content
-                  created for church updates, campaigns, and events.
+                  Social graphics, campaign artwork, video reels, captions, and
+                  page content created for church updates, programmes, and events.
                 </p>
-                <ul aria-label="Social Media Management work">
+                <ul aria-label="Life Regeneration Church social media work">
                   <li>Graphics</li>
                   <li>Video reels</li>
-                  <li>Copywriting</li>
+                  <li>Page management</li>
                 </ul>
               </div>
             </article>
