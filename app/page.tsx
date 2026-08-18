@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const experience = [
   {
     company: "Tradie — formerly Pro Tradesmen Club",
@@ -156,13 +154,12 @@ export default function Home() {
           <article className="project project-featured">
             <figure className="project-visual">
               <div className="project-image-frame">
-                <Image
+                <img
                   className="project-image"
                   src="/projects/direct-construction.png"
                   alt="Full-page screenshot of the Direct Construction, Inc. WordPress website"
-                  fill
-                  sizes="(max-width: 1000px) 100vw, 66vw"
-                  quality={82}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <figcaption>WordPress website · Construction</figcaption>
@@ -187,13 +184,12 @@ export default function Home() {
             <article className="project">
               <figure className="project-visual project-visual-tall">
                 <div className="project-image-frame">
-                  <Image
+                  <img
                     className="project-image"
                     src="/projects/tradie.png"
                     alt="Full-page screenshot of the Tradie growth website for UK trades businesses"
-                    fill
-                    sizes="(max-width: 650px) 100vw, 48vw"
-                    quality={82}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <figcaption>Website design · Conversion content</figcaption>
@@ -217,13 +213,12 @@ export default function Home() {
             <article className="project project-offset">
               <figure className="project-visual project-visual-square">
                 <div className="project-image-frame">
-                  <Image
+                  <img
                     className="project-image project-image-social"
                     src="/projects/life-regeneration-church.png"
                     alt="Life Regeneration Church Facebook page featuring Accelerated Favor campaign artwork"
-                    fill
-                    sizes="(max-width: 650px) 100vw, 42vw"
-                    quality={82}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <figcaption>Social media · Campaign creative</figcaption>
