@@ -1,6 +1,6 @@
 .system-page {
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: clip;
   background: var(--gj-studio-50);
   color: var(--gj-ink);
   font-family: var(--gj-body);
@@ -29,6 +29,9 @@
 }
 
 .system-bar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
