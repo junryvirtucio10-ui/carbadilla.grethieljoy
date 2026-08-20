@@ -59,9 +59,13 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
+  min-width: 320px;
   margin: 0;
   background: var(--silk);
   color: var(--ink);
@@ -71,6 +75,18 @@ body {
 
 a {
   color: inherit;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font-size: 1rem;
 }
 
 .skip-link {
@@ -176,6 +192,9 @@ a {
 .site-nav a {
   position: relative;
   overflow: hidden;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   padding: 0.58rem 0.85rem;
   border-radius: 999px;
   text-decoration: none;
@@ -1064,12 +1083,15 @@ a {
 .contact-links a {
   display: grid;
   grid-template-columns: 1fr auto;
+  min-width: 0;
+  min-height: 52px;
   gap: 0.45rem 1rem;
   padding: 1.2rem 0;
   border-top: 1px solid var(--champagne);
   font-family: var(--display);
   font-size: clamp(1.15rem, 2.1vw, 1.75rem);
   text-decoration: none;
+  overflow-wrap: anywhere;
 }
 
 .contact-links a span {
@@ -1392,6 +1414,7 @@ a {
 
 .home-contact-strip a {
   flex: 0 0 auto;
+  min-height: 52px;
   padding: 1rem 1.2rem;
   border: 2px solid var(--ink);
   background: var(--ink);
@@ -1400,6 +1423,28 @@ a {
   font-weight: 700;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+/* Keep the editorial layout composed on very wide screens. */
+.hero,
+.page-hero,
+.home-featured {
+  padding-right: max(6vw, calc((100vw - 1680px) / 2));
+  padding-left: max(6vw, calc((100vw - 1680px) / 2));
+}
+
+.home-intro,
+.about-story,
+.experience-section,
+.contact-section {
+  padding-right: max(8vw, calc((100vw - 1680px) / 2));
+  padding-left: max(8vw, calc((100vw - 1680px) / 2));
+}
+
+.work-section,
+.skills-section {
+  padding-right: max(3.2vw, calc((100vw - 1680px) / 2));
+  padding-left: max(3.2vw, calc((100vw - 1680px) / 2));
 }
 
 .work-page-section {
@@ -1605,6 +1650,17 @@ a {
   }
 }
 
+@media (max-width: 1180px) {
+  .site-header {
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem;
+  }
+
+  .header-label {
+    display: none;
+  }
+}
+
 @media (max-width: 1000px) {
   .site-header {
     grid-template-columns: 1fr auto;
@@ -1643,6 +1699,7 @@ a {
   }
 
   .hero-copy {
+    max-width: 46rem;
     padding: 2rem 0 0;
   }
 
@@ -1788,7 +1845,35 @@ a {
   }
 }
 
+@media (max-width: 780px) {
+  .home-project-grid,
+  .contact-links {
+    grid-template-columns: 1fr;
+  }
+
+  .home-project-grid {
+    gap: 5rem;
+  }
+
+  .home-project-card {
+    width: 100%;
+    max-width: 44rem;
+  }
+
+  .contact-links {
+    gap: 1rem;
+  }
+
+  .contact-links a {
+    font-size: clamp(1.05rem, 4vw, 1.45rem);
+  }
+}
+
 @media (max-width: 650px) {
+  html {
+    scroll-padding-top: 9rem;
+  }
+
   .concept-ribbon {
     font-size: 1rem;
     letter-spacing: 0.1em;
@@ -1807,10 +1892,13 @@ a {
 
   .site-nav {
     width: 100%;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline proximity;
   }
 
   .site-nav a {
     flex: 0 0 auto;
+    scroll-snap-align: start;
   }
 
   .eyebrow {
@@ -1964,6 +2052,7 @@ a {
 
   .contact-links a {
     font-size: 1.05rem;
+    word-break: break-word;
   }
 
   .site-footer {
@@ -1976,5 +2065,163 @@ a {
 
   .site-footer p:last-child {
     align-self: flex-start;
+  }
+}
+
+@media (max-width: 430px) {
+  .site-header {
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
+  }
+
+  .hero {
+    padding-top: 2.5rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-button {
+    width: 100%;
+  }
+
+  .hero-art {
+    margin-top: 3rem;
+    margin-bottom: 4.5rem;
+  }
+
+  .hero-availability {
+    right: auto;
+    bottom: -4.5rem;
+    left: 0;
+    width: 100%;
+  }
+
+  .page-hero,
+  .page-hero-portrait,
+  .home-intro,
+  .home-featured,
+  .about-story,
+  .work-section,
+  .skills-section,
+  .experience-section,
+  .contact-section,
+  .home-contact-strip {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  .page-hero > h1,
+  .page-hero-portrait h1,
+  .home-intro h2,
+  .about-story h2,
+  .home-featured-heading h2 {
+    font-size: clamp(3rem, 14vw, 4.35rem);
+  }
+
+  .profile-copy h2,
+  .section-heading h2,
+  .skills-heading h2,
+  .experience-heading h1,
+  .experience-heading h2 {
+    font-size: clamp(3rem, 14vw, 4rem);
+  }
+
+  .contact-section h1,
+  .contact-section h2 {
+    font-size: clamp(3rem, 14vw, 4.35rem);
+  }
+
+  .home-page-links {
+    gap: 1rem;
+  }
+
+  .home-project-card figure {
+    aspect-ratio: 1.2;
+  }
+
+  .home-contact-strip a {
+    width: 100%;
+    text-align: center;
+  }
+
+  .project-visual,
+  .project-visual-tall,
+  .project-visual-square {
+    aspect-ratio: 1.18;
+  }
+
+  .project-visual figcaption,
+  .home-project-card figcaption {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    width: auto;
+    text-align: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .wordmark {
+    font-size: 1.05rem;
+  }
+
+  .site-nav a {
+    padding-right: 0.68rem;
+    padding-left: 0.68rem;
+  }
+
+  .hero h1 {
+    font-size: 3.35rem;
+  }
+
+  .hero-availability {
+    padding: 0.85rem;
+  }
+
+  .tool-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-project-card h3,
+  .project-copy h2,
+  .project-copy h3 {
+    font-size: 2.35rem;
+  }
+}
+
+@media (max-height: 620px) and (min-width: 651px) {
+  .hero,
+  .page-hero,
+  .page-hero-portrait {
+    min-height: auto;
+  }
+
+  .hero,
+  .page-hero {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+}
+
+@media (hover: none) {
+  .project:hover .project-visual,
+  .home-project-card:hover a,
+  .tool-card:hover {
+    transform: none;
+  }
+
+  .project:hover .project-visual,
+  .home-project-card:hover figure {
+    box-shadow:
+      0 25px 60px rgba(75, 57, 49, 0.13),
+      13px 13px 0 var(--champagne-pale);
+  }
+
+  .home-project-card:hover figure {
+    box-shadow: 11px 12px 0 var(--champagne-pale);
   }
 }
