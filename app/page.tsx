@@ -9,12 +9,14 @@ export default function Home() {
       <main id="main-content">
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="eyebrow">WordPress, web design & digital content · Cebu, Philippines</p>
-            <h1 id="hero-title">Grethiel Joy<span>Carbadilla G.</span></h1>
-            <div className="hero-intro">
-              <p>I design responsive websites and digital content that help businesses communicate clearly and work better online.</p>
-              <a className="arrow-link" href="/work">Explore my work <span aria-hidden="true">↗</span></a>
+            <p className="eyebrow">Website designer · WordPress developer · Digital creative</p>
+            <h1 id="hero-title">Hi, I’m <span>Grethiel Joy.</span></h1>
+            <p className="hero-lede">I design, build, and maintain responsive websites and digital content that make businesses clearer, more useful, and easier to trust online.</p>
+            <div className="hero-actions">
+              <a className="hero-button hero-button-primary" href="/work">View my work <span aria-hidden="true">↗</span></a>
+              <a className="hero-button hero-button-secondary" href="/about">About me</a>
             </div>
+            <p className="hero-meta">Based in Cebu, Philippines <span aria-hidden="true">·</span> Available for remote projects</p>
           </div>
 
           <div className="hero-art">
@@ -22,9 +24,8 @@ export default function Home() {
             <figure className="resume-portrait">
               <img src="/grethiel.png" alt="Grethiel Joy Carbadilla G." decoding="async" fetchPriority="high" />
             </figure>
-            <aside className="hero-note"><span>Design system signature</span><p>Built in cocoa. Signed in gold.</p></aside>
+            <div className="hero-availability"><span aria-hidden="true" /><p>Available for website design, WordPress, and digital content work.</p></div>
           </div>
-          <p className="hero-location">Portfolio No. 02 · Cocoa & gold</p>
         </section>
 
         <section className="home-intro" aria-labelledby="home-intro-title">

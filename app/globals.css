@@ -198,8 +198,9 @@ a {
   position: relative;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  min-height: calc(100svh - 88px);
-  padding: 64px 5vw;
+  align-items: center;
+  min-height: min(820px, calc(100svh - 88px));
+  padding: clamp(4rem, 7vw, 7rem) 6vw;
   isolation: isolate;
   background:
     radial-gradient(circle at 16% 30%, rgba(231, 218, 195, 0.46), transparent 26%),
@@ -210,34 +211,27 @@ a {
 .hero::before {
   position: absolute;
   z-index: -1;
-  top: 15%;
-  left: 48%;
-  width: min(42vw, 650px);
-  height: 72%;
-  border: 1px solid rgba(184, 149, 93, 0.55);
-  border-radius: 50% 50% 47% 53% / 58% 44% 56% 42%;
+  top: 50%;
+  right: 4vw;
+  left: auto;
+  width: min(40vw, 38rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(184, 149, 93, 0.38);
+  border-radius: 50%;
   content: "";
-  transform: rotate(8deg);
+  transform: translateY(-50%);
 }
 
 .hero::after {
-  position: absolute;
-  z-index: -1;
-  top: 20%;
-  left: 50%;
-  width: min(35vw, 530px);
-  height: 60%;
-  border: 1px solid rgba(184, 149, 93, 0.22);
-  border-radius: 48% 52% 50% 50% / 43% 55% 45% 57%;
-  content: "";
-  transform: rotate(-9deg);
+  display: none;
 }
 
 .hero-copy {
   z-index: 3;
-  grid-column: 1 / span 7;
+  grid-column: 1 / span 6;
   align-self: center;
-  padding-top: 4vh;
+  max-width: 48rem;
+  padding: 0;
 }
 
 .eyebrow {
@@ -258,23 +252,82 @@ a {
 }
 
 .hero h1 {
-  max-width: 10ch;
+  max-width: 9ch;
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(4.8rem, 9vw, 9.8rem);
+  font-size: clamp(4.5rem, 7vw, 7.7rem);
   font-weight: 400;
-  line-height: 0.78;
+  line-height: 0.84;
   letter-spacing: -0.07em;
 }
 
 .hero h1 span {
   display: block;
-  margin-left: 0.35em;
+  margin: 0.08em 0 0;
   color: var(--champagne);
-  font-size: 0.67em;
+  font-size: 0.82em;
   font-style: italic;
   letter-spacing: -0.045em;
-  white-space: nowrap;
+  white-space: normal;
+}
+
+.hero-lede {
+  max-width: 43rem;
+  margin: 2.2rem 0 0;
+  color: var(--cocoa);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem);
+  line-height: 1.72;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  min-height: 52px;
+  padding: 0.9rem 1.1rem;
+  border: 2px solid var(--ink);
+  font-family: var(--utility);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.hero-button-primary {
+  background: var(--ink);
+  color: var(--porcelain);
+  box-shadow: 6px 6px 0 var(--champagne);
+}
+
+.hero-button-secondary {
+  background: rgba(248, 248, 248, 0.72);
+  color: var(--ink);
+}
+
+.hero-button:hover,
+.hero-button:focus-visible {
+  transform: translate(-2px, -2px);
+}
+
+.hero-meta {
+  margin: 2.1rem 0 0;
+  color: var(--cocoa);
+  font-family: var(--utility);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  text-transform: uppercase;
 }
 
 .hero-intro {
@@ -326,8 +379,8 @@ a {
   grid-row: 1;
   align-self: center;
   justify-self: end;
-  width: min(50vw, 760px);
-  height: min(47vw, 700px);
+  width: min(41vw, 590px);
+  height: min(41vw, 590px);
 }
 
 .hero-work-circle,
@@ -339,9 +392,11 @@ a {
 }
 
 .hero-work-circle {
-  top: 24%;
+  bottom: 3%;
+  top: auto;
   left: 0;
-  width: 48%;
+  z-index: 1;
+  width: 39%;
   aspect-ratio: 1;
   border: 1px solid rgba(197, 143, 21, 0.72);
   background: var(--porcelain);
@@ -369,11 +424,11 @@ a {
 
 .resume-portrait {
   z-index: 2;
-  top: 5%;
+  top: 0;
   right: 0;
-  width: 70%;
+  width: 78%;
   aspect-ratio: 1;
-  padding: 0.72rem;
+  padding: 0.65rem;
   border: 3px solid var(--champagne-pale);
   background: var(--ink);
   box-shadow:
@@ -389,19 +444,36 @@ a {
   object-fit: cover;
 }
 
-.hero-note {
+.hero-availability {
   position: absolute;
-  right: 1.5rem;
-  bottom: 2%;
+  right: 0;
+  bottom: 1%;
   z-index: 4;
-  width: min(18rem, 48%);
-  margin: 0;
-  padding: 1rem 1.15rem 1.25rem;
-  border: 1px solid var(--champagne);
-  background: rgba(255, 253, 248, 0.94);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  width: min(22rem, 62%);
+  padding: 1rem;
+  border: 1px solid var(--line);
+  background: rgba(248, 248, 248, 0.96);
   color: var(--ink);
   box-shadow: 0 18px 40px rgba(75, 57, 49, 0.14);
-  transform: rotate(1deg);
+}
+
+.hero-availability > span {
+  flex: 0 0 auto;
+  width: 0.75rem;
+  aspect-ratio: 1;
+  margin-top: 0.35rem;
+  border-radius: 50%;
+  background: var(--champagne);
+  box-shadow: 0 0 0 4px var(--champagne-pale);
+}
+
+.hero-availability p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
 }
 
 .hero-note span,
@@ -1343,7 +1415,9 @@ a {
 @media (prefers-reduced-motion: no-preference) {
   .eyebrow,
   .hero h1,
-  .hero-intro,
+  .hero-lede,
+  .hero-actions,
+  .hero-meta,
   .hero-art {
     opacity: 0;
     animation: enter 650ms ease forwards;
@@ -1353,7 +1427,9 @@ a {
     animation-delay: 80ms;
   }
 
-  .hero-intro {
+  .hero-lede,
+  .hero-actions,
+  .hero-meta {
     animation-delay: 160ms;
   }
 
@@ -1396,10 +1472,12 @@ a {
   }
 
   .hero::before {
-    top: 47%;
-    left: 38%;
-    width: 58vw;
-    height: 46%;
+    top: 72%;
+    right: auto;
+    left: 50%;
+    width: min(70vw, 34rem);
+    height: auto;
+    transform: translate(-50%, -50%);
   }
 
   .hero::after {
@@ -1433,9 +1511,9 @@ a {
   }
 
   .hero-art {
-    width: min(92vw, 650px);
-    height: min(82vw, 610px);
-    margin: 7rem auto 0;
+    width: min(78vw, 560px);
+    height: min(78vw, 560px);
+    margin: 4rem auto 0;
   }
 
   .hero-location {
@@ -1592,23 +1670,24 @@ a {
 
   .hero-art {
     width: 100%;
-    height: min(96vw, 34rem);
+    height: min(94vw, 32rem);
   }
 
   .resume-portrait {
     top: 0;
-    width: 76%;
+    width: 82%;
   }
 
   .hero-work-circle {
-    top: 34%;
-    width: 43%;
+    top: auto;
+    bottom: 4%;
+    width: 36%;
   }
 
-  .hero-note {
+  .hero-availability {
     right: 0;
-    bottom: -1.5rem;
-    width: min(19rem, 72%);
+    bottom: -1rem;
+    width: min(21rem, 70%);
   }
 
   .profile-copy h2,
