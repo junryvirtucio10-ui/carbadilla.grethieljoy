@@ -174,18 +174,22 @@ a {
 }
 
 .site-nav a {
+  position: relative;
+  overflow: hidden;
   padding: 0.58rem 0.85rem;
   border-radius: 999px;
   text-decoration: none;
   transition:
     background 180ms ease,
-    color 180ms ease;
+    color 180ms ease,
+    transform 180ms ease;
 }
 
 .site-nav a:hover,
 .site-nav a:focus-visible {
   background: var(--ink);
   color: var(--porcelain);
+  transform: translateY(-1px);
 }
 
 .header-label {
@@ -303,6 +307,10 @@ a {
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
+.hero-button span {
+  transition: transform 180ms ease;
+}
+
 .hero-button-primary {
   background: var(--ink);
   color: var(--porcelain);
@@ -317,6 +325,11 @@ a {
 .hero-button:hover,
 .hero-button:focus-visible {
   transform: translate(-2px, -2px);
+}
+
+.hero-button:hover span,
+.hero-button:focus-visible span {
+  transform: translate(0.2rem, -0.2rem);
 }
 
 .hero-meta {
@@ -639,6 +652,17 @@ a {
   box-shadow:
     0 25px 60px rgba(75, 57, 49, 0.13),
     13px 13px 0 var(--champagne-pale);
+  transition:
+    transform 280ms ease,
+    box-shadow 280ms ease;
+}
+
+.project:hover .project-visual,
+.project:focus-within .project-visual {
+  box-shadow:
+    0 32px 70px rgba(75, 57, 49, 0.17),
+    16px 16px 0 var(--champagne-pale);
+  transform: translateY(-5px);
 }
 
 .project-visual::before {
@@ -924,6 +948,14 @@ a {
   padding: 0.95rem;
   border: 1px solid rgba(75, 57, 49, 0.08);
   background: var(--champagne-pale);
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.tool-card:hover {
+  box-shadow: 0 16px 34px rgba(75, 57, 49, 0.1);
+  transform: translateY(-4px);
 }
 
 .tool-card:nth-child(3n + 2) {
@@ -1258,6 +1290,12 @@ a {
 .home-project-card a {
   display: block;
   text-decoration: none;
+  transition: transform 260ms ease;
+}
+
+.home-project-card:hover a,
+.home-project-card a:focus-visible {
+  transform: translateY(-6px);
 }
 
 .home-project-card figure {
@@ -1269,6 +1307,14 @@ a {
   border: 1px solid var(--champagne);
   background: var(--porcelain);
   box-shadow: 11px 12px 0 var(--champagne-pale);
+  transition: box-shadow 260ms ease;
+}
+
+.home-project-card:hover figure,
+.home-project-card a:focus-visible figure {
+  box-shadow:
+    0 24px 50px rgba(75, 57, 49, 0.12),
+    14px 15px 0 var(--champagne-pale);
 }
 
 .home-project-card img {
@@ -1436,6 +1482,37 @@ a {
   .hero-art {
     animation-delay: 230ms;
   }
+
+  .resume-portrait {
+    animation: portrait-float 7s ease-in-out 900ms infinite;
+  }
+
+  .hero-work-circle {
+    animation: work-drift 9s ease-in-out 1.2s infinite;
+  }
+
+  .hero-availability > span {
+    animation: availability-pulse 2.8s ease-in-out 1.4s infinite;
+  }
+
+  .page-hero > *,
+  .experience-heading > *,
+  .contact-page > * {
+    opacity: 0;
+    animation: enter 600ms ease forwards;
+  }
+
+  .page-hero > :nth-child(2),
+  .experience-heading > :nth-child(2),
+  .contact-page > :nth-child(2) {
+    animation-delay: 90ms;
+  }
+
+  .page-hero > :nth-child(3),
+  .experience-heading > :nth-child(3),
+  .contact-page > :nth-child(3) {
+    animation-delay: 170ms;
+  }
 }
 
 @keyframes enter {
@@ -1447,6 +1524,84 @@ a {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes portrait-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(0, -9px, 0) rotate(0.35deg);
+  }
+}
+
+@keyframes work-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(-6px, 7px, 0);
+  }
+}
+
+@keyframes availability-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(197, 143, 21, 0.34);
+  }
+
+  50% {
+    box-shadow: 0 0 0 7px rgba(197, 143, 21, 0);
+  }
+}
+
+@keyframes section-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .home-intro > *,
+    .home-featured-heading > *,
+    .home-project-card,
+    .home-contact-strip > *,
+    .project,
+    .about-story > *,
+    .skills-heading > *,
+    .skills-layout > *,
+    .education-card,
+    .experience-list li {
+      animation: section-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 28%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
