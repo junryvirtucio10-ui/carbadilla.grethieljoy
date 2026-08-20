@@ -4,8 +4,8 @@ export function SiteFooter() {
       <a className="wordmark" href="/" aria-label="Grethiel Joy, home">
         Grethiel Joy<span aria-hidden="true">.</span>
       </a>
-      <p>Multi-page portfolio · Version 2.0</p>
-      <p>Cebu, Philippines · Cocoa & gold</p>
+      <p className="footer-note">Based in Cebu · Working remotely</p>
+      <a className="footer-contact" href="/contact">Start a project <span aria-hidden="true">↗</span></a>
     </footer>
   );
 }

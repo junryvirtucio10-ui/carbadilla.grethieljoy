@@ -9,9 +9,9 @@ export default function Home() {
       <main id="main-content">
         <section className="hero" aria-labelledby="hero-title">
           <div className="hero-copy">
-            <p className="eyebrow">Website designer · WordPress developer · Digital creative</p>
-            <h1 id="hero-title">Hi, I’m <span>Grethiel Joy.</span></h1>
-            <p className="hero-lede">I design, build, and maintain responsive websites and digital content that make businesses clearer, more useful, and easier to trust online.</p>
+            <p className="eyebrow">Web design · WordPress · Digital content</p>
+            <h1 id="hero-title">Websites made <span>clear and useful.</span></h1>
+            <p className="hero-lede">I’m Grethiel Joy, a Cebu-based web designer and WordPress developer. I turn content and ideas into responsive websites people can understand and use.</p>
             <div className="hero-actions">
               <a className="hero-button hero-button-primary" href="/work">View my work <span aria-hidden="true">↗</span></a>
               <a className="hero-button hero-button-secondary" href="/about">About me</a>
