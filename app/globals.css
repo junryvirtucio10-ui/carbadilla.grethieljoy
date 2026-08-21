@@ -1144,8 +1144,7 @@ select {
 
 .site-footer .brand-logo-link {
   width: clamp(19rem, 28vw, 25rem);
-  padding: 0.15rem;
-  background: var(--porcelain);
+  aspect-ratio: 3 / 1;
 }
 
 .footer-note {
