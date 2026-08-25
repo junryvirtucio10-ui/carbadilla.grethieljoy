@@ -17,7 +17,7 @@ export default function AboutPage() {
         <header className="page-hero page-hero-portrait">
           <div>
             <p className="section-kicker">About</p>
-            <h1>I design, build, maintain, and improve.</h1>
+            <h1>I design, build, maintain, and improve websites.</h1>
             <p>I’m a creative website designer experienced in WordPress, content organisation, responsive user experience, graphics, SEO, and digital marketing support..</p>
           </div>
           <figure><img src="/grethiel-images/joy-grethiel.png" alt="Grethiel Joy Carbadilla G." /></figure>
