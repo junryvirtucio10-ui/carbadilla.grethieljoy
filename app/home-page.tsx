@@ -23,10 +23,10 @@ export default function Home() {
             <div className="hero-work-circle" aria-hidden="true"><img src="/projects/direct-construction.png" alt="" /></div>
             <figure className="resume-portrait">
               <img
-                src="/grethiel.png"
+                src="/grethiel-images/grethiel-joy.png"
                 alt="Grethiel Joy Carbadilla G."
-                width="1050"
-                height="1050"
+                width="1024"
+                height="1536"
                 decoding="async"
                 fetchPriority="high"
               />
