@@ -439,7 +439,7 @@ select {
 
 .hero-art::before {
   position: absolute;
-  inset: -9%;
+  inset: 0;
   z-index: 0;
   border: 2px solid rgba(197, 143, 21, 0.72);
   border-radius: 50%;
@@ -447,43 +447,11 @@ select {
   pointer-events: none;
 }
 
-.hero-work-circle,
 .resume-portrait {
   position: absolute;
   overflow: hidden;
   margin: 0;
   border-radius: 50%;
-}
-
-.hero-work-circle {
-  bottom: 3%;
-  top: auto;
-  left: 0;
-  z-index: 3;
-  width: 39%;
-  aspect-ratio: 1;
-  border: 1px solid rgba(197, 143, 21, 0.72);
-  background: var(--porcelain);
-  box-shadow:
-    0 24px 65px rgba(75, 57, 49, 0.14),
-    -13px 15px 0 rgba(255, 222, 89, 0.32);
-}
-
-.hero-work-circle::after {
-  position: absolute;
-  inset: 5%;
-  border: 1px solid rgba(255, 253, 248, 0.82);
-  border-radius: inherit;
-  content: "";
-}
-
-.hero-work-circle img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  filter: saturate(0.72) sepia(0.13) brightness(1.06);
 }
 
 .resume-portrait {
@@ -504,38 +472,6 @@ select {
   height: 100%;
   object-fit: cover;
   object-position: center 32%;
-}
-
-.hero-availability {
-  position: absolute;
-  right: 0;
-  bottom: 1%;
-  z-index: 4;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  width: min(22rem, 62%);
-  padding: 1rem;
-  border: 1px solid var(--line);
-  background: rgba(248, 248, 248, 0.96);
-  color: var(--ink);
-  box-shadow: 0 18px 40px rgba(75, 57, 49, 0.14);
-}
-
-.hero-availability > span {
-  flex: 0 0 auto;
-  width: 0.75rem;
-  aspect-ratio: 1;
-  margin-top: 0.35rem;
-  border-radius: 50%;
-  background: var(--champagne);
-  box-shadow: 0 0 0 4px var(--champagne-pale);
-}
-
-.hero-availability p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.55;
 }
 
 .hero-note span,
@@ -1594,14 +1530,6 @@ select {
     animation: portrait-float 7s ease-in-out 900ms infinite;
   }
 
-  .hero-work-circle {
-    animation: work-drift 9s ease-in-out 1.2s infinite;
-  }
-
-  .hero-availability > span {
-    animation: availability-pulse 2.8s ease-in-out 1.4s infinite;
-  }
-
   .page-hero > *,
   .experience-heading > *,
   .contact-page > * {
@@ -1642,28 +1570,6 @@ select {
 
   50% {
     transform: translate3d(0, -9px, 0) rotate(0.35deg);
-  }
-}
-
-@keyframes work-drift {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(-6px, 7px, 0);
-  }
-}
-
-@keyframes availability-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(197, 143, 21, 0.34);
-  }
-
-  50% {
-    box-shadow: 0 0 0 7px rgba(197, 143, 21, 0);
   }
 }
 
@@ -2018,19 +1924,7 @@ select {
   }
 
   .hero-art::before {
-    inset: -5%;
-  }
-
-  .hero-work-circle {
-    top: auto;
-    bottom: 4%;
-    width: 36%;
-  }
-
-  .hero-availability {
-    right: 0;
-    bottom: -1rem;
-    width: min(21rem, 70%);
+    inset: 0;
   }
 
   .profile-copy h2,
@@ -2205,14 +2099,7 @@ select {
 
   .hero-art {
     margin-top: 3rem;
-    margin-bottom: 4.5rem;
-  }
-
-  .hero-availability {
-    right: auto;
-    bottom: -4.5rem;
-    left: 0;
-    width: 100%;
+    margin-bottom: 0;
   }
 
   .page-hero,
@@ -2297,10 +2184,6 @@ select {
 
   .hero h1 {
     font-size: 3.25rem;
-  }
-
-  .hero-availability {
-    padding: 0.85rem;
   }
 
   .tool-grid {

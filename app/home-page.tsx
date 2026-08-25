@@ -20,7 +20,6 @@ export default function Home() {
           </div>
 
           <div className="hero-art">
-            <div className="hero-work-circle" aria-hidden="true"><img src="/projects/direct-construction.png" alt="" /></div>
             <figure className="resume-portrait">
               <img
                 src="/grethiel-images/grethiel-joy.png"
@@ -31,7 +30,6 @@ export default function Home() {
                 fetchPriority="high"
               />
             </figure>
-            <div className="hero-availability"><span aria-hidden="true" /><p>Available for website design, WordPress, and digital content work.</p></div>
           </div>
         </section>
 
