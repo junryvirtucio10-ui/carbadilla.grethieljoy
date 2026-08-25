@@ -47,8 +47,15 @@ export const experience = [
 export const skills = [
   "WordPress", "Elementor", "Canva", "Digital marketing", "Website maintenance",
   "Website design", "Content management", "Adobe Photoshop", "Graphic design",
-  "Figma", "Social media management", "Google Workspace", "Responsive design",
+  "Figma", "Social media management", "Adobe Lightroom", "Responsive design",
   "Team collaboration", "UX/UI design", "Attention to detail", "Communication",
 ];
 
-export const tools = ["WordPress", "Elementor", "Divi", "Google Workspace", "Figma", "Canva"];
+export const tools = [
+  { name: "WordPress", logo: "/toolkit-logos/wordpress.png" },
+  { name: "Elementor", logo: "/toolkit-logos/elementor.png" },
+  { name: "Divi", logo: "/toolkit-logos/divi.png" },
+  { name: "Adobe Lightroom", logo: "/toolkit-logos/adobe-lightroom.png" },
+  { name: "Figma", logo: "/toolkit-logos/figma.png" },
+  { name: "Canva", logo: "/toolkit-logos/canva.png" },
+];

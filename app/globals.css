@@ -16,7 +16,7 @@
   --gj-ink: #211711;
   --gj-line: rgba(65, 45, 33, 0.22);
 
-  --gj-display: "Arial Black", "Avenir Next", Arial, sans-serif;
+  --gj-display: "Roxborough CF", Baskerville, "Baskerville Old Face", Georgia, serif;
   --gj-body: "Trebuchet MS", "Segoe UI", sans-serif;
   --gj-utility: Consolas, "Courier New", monospace;
 
@@ -71,6 +71,15 @@ body {
   color: var(--ink);
   font-family: var(--body);
   font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--display);
 }
 
 a {
@@ -428,6 +437,16 @@ select {
   height: min(41vw, 590px);
 }
 
+.hero-art::before {
+  position: absolute;
+  inset: -9%;
+  z-index: 0;
+  border: 2px solid rgba(197, 143, 21, 0.72);
+  border-radius: 50%;
+  content: "";
+  pointer-events: none;
+}
+
 .hero-work-circle,
 .resume-portrait {
   position: absolute;
@@ -440,7 +459,7 @@ select {
   bottom: 3%;
   top: auto;
   left: 0;
-  z-index: 1;
+  z-index: 3;
   width: 39%;
   aspect-ratio: 1;
   border: 1px solid rgba(197, 143, 21, 0.72);
@@ -468,13 +487,11 @@ select {
 }
 
 .resume-portrait {
-  z-index: 2;
-  top: 0;
-  right: 0;
-  width: 78%;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
   aspect-ratio: 1;
-  padding: 0.65rem;
-  border: 3px solid var(--champagne-pale);
+  border: 1px solid rgba(197, 143, 21, 0.42);
   background: var(--ink);
   box-shadow:
     0 28px 70px rgba(75, 57, 49, 0.22),
@@ -485,8 +502,8 @@ select {
   display: block;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
   object-fit: cover;
+  object-position: center;
 }
 
 .hero-availability {
@@ -998,10 +1015,10 @@ select {
   background: rgba(183, 162, 155, 0.58);
 }
 
-.tool-card span {
-  width: max-content;
-  padding-bottom: 0.35rem;
-  border-bottom: 1px solid currentColor;
+.tool-card-logo {
+  width: 3.25rem;
+  height: 3.25rem;
+  object-fit: contain;
 }
 
 .tool-card p {
@@ -1215,6 +1232,7 @@ select {
   align-items: center;
   gap: clamp(3rem, 8vw, 8rem);
   min-height: 68svh;
+  padding-top: 35px!important;
 }
 
 .page-hero-portrait > div {
@@ -1241,28 +1259,24 @@ select {
 
 .page-hero-portrait figure {
   position: relative;
+  display: grid;
+  width: min(100%, 31rem);
+  aspect-ratio: 0.68;
+  place-items: center;
   margin: 0;
-  padding: 0.8rem;
-  border: 3px solid var(--champagne-pale);
-  border-radius: 50%;
-  background: var(--ink);
+  overflow: hidden;
+  border-radius: 15px;
+  border: 2px solid rgba(197, 143, 21, 0.42);
+  background: rgba(255, 253, 248, 0.34);
   box-shadow: 15px 18px 0 var(--champagne-pale);
 }
 
-.page-hero-portrait figure::before {
-  position: absolute;
-  inset: -9%;
-  z-index: -1;
-  border: 1px solid rgba(197, 143, 21, 0.42);
-  border-radius: 50%;
-  content: "";
-}
-
 .page-hero-portrait img {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
-  aspect-ratio: 1;
-  border-radius: 50%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -1288,6 +1302,12 @@ select {
   font-weight: 400;
   line-height: 0.96;
   letter-spacing: -0.055em;
+}
+.about-story {
+  background-image: url("/about-story-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .home-intro > div > p {
@@ -1505,7 +1525,11 @@ select {
   grid-template-columns: 0.75fr 2.25fr;
   gap: 6vw;
   padding: clamp(7rem, 11vw, 11rem) 8vw;
-  background: var(--silk);
+  background-color: var(--silk);
+  background-image: url("/about-story-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .about-story > .section-kicker {
@@ -1993,9 +2017,8 @@ select {
     height: min(94vw, 32rem);
   }
 
-  .resume-portrait {
-    top: 0;
-    width: 82%;
+  .hero-art::before {
+    inset: -5%;
   }
 
   .hero-work-circle {
