@@ -1,6 +1,7 @@
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import { projects } from "./portfolio-data";
+import { HeroAtmosphere } from "./components/hero-atmosphere";
 
 export default function Home() {
   return (
@@ -8,10 +9,11 @@ export default function Home() {
       <SiteHeader />
       <main id="main-content">
         <section className="hero" aria-labelledby="hero-title">
+          <HeroAtmosphere />
           <div className="hero-copy">
-            <p className="eyebrow">Web design · WordPress · Digital content</p>
+            <p className="eyebrow">Digital Marketing & Web Development</p>
             <h1 id="hero-title">Websites made <span>clear and useful.</span></h1>
-            <p className="hero-lede">I’m Grethiel Joy, a Cebu-based web designer and WordPress developer. I turn content and ideas into responsive websites people can understand and use.</p>
+            <p className="hero-lede">I’m Grethiel Joy, a Digital Marketing Specialist & Web Developer based in Cebu. I bring together marketing strategy, compelling content, and responsive websites to help businesses connect with the right people and turn interest into action.</p>
             <div className="hero-actions">
               <a className="hero-button hero-button-primary" href="/work">View my work <span aria-hidden="true">↗</span></a>
               <a className="hero-button hero-button-secondary" href="/about">About me</a>
@@ -36,8 +38,8 @@ export default function Home() {
         <section className="home-intro" aria-labelledby="home-intro-title">
           <p className="section-kicker">Profile</p>
           <div>
-            <h2 id="home-intro-title">Websites with structure. Digital design with warmth.</h2>
-            <p>My work brings together WordPress, visual design, content, and ongoing website care. Browse each part of the portfolio on its own page, or start with the selected projects below.</p>
+            <h2 id="home-intro-title">Marketing with purpose. Websites that work.</h2>
+            <p>Digital marketing and web development are at the heart of my work. From WordPress websites and conversion-focused content to social media creative and ongoing website care, I help brands build a connected digital presence.</p>
             <div className="home-page-links">
               <a href="/about">About my approach <span aria-hidden="true">↗</span></a>
               <a href="/experience">View experience <span aria-hidden="true">↗</span></a>
@@ -55,7 +57,7 @@ export default function Home() {
               <article className="home-project-card" key={project.slug}>
                 <a href={`/work#${project.slug}`}>
                   <figure>
-                    <img src={project.image} alt={project.alt} loading="lazy" decoding="async" />
+                    <img src={project.thumbnail ?? project.image} alt={project.alt} loading="lazy" decoding="async" />
                     <figcaption>{project.caption}</figcaption>
                   </figure>
                   <p>{project.role}</p>
@@ -68,8 +70,13 @@ export default function Home() {
         </section>
 
         <section className="home-contact-strip" aria-label="Contact invitation">
-          <p>Have a website or digital project in mind?</p>
-          <a href="/contact">Let’s talk <span aria-hidden="true">↗</span></a>
+          <div className="home-contact-main">
+            <div className="home-contact-copy">
+              <p>Have a website or digital project in mind?</p>
+              <h2>Let’s make the next idea <em>clear, useful, and ready to work.</em></h2>
+            </div>
+            <a href="/contact"><span>Let’s talk</span><b aria-hidden="true">↗</b></a>
+          </div>
         </section>
       </main>
       <SiteFooter />

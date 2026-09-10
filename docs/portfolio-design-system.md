@@ -2,6 +2,8 @@
 
 Version 1.0 — August 2026
 
+September 2026 update: [DESIGN.md](../DESIGN.md) records the current typography, shared header, hero background motion, and project gallery/viewer. It supersedes the historical recommendations below for those components; `app/globals.css` remains the canonical token source.
+
 ## Purpose
 
 This system translates the cocoa, gold, off-white, and blue visual language of Grethiel Joy's resume into an accessible digital portfolio. It is designed for small-business clients, creative teams, and hiring managers.

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { HeroAtmosphere } from "../components/hero-atmosphere";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { skills, tools } from "../portfolio-data";
@@ -15,10 +16,11 @@ export default function AboutPage() {
       <SiteHeader />
       <main id="main-content" className="inner-page">
         <header className="page-hero page-hero-portrait">
+          <HeroAtmosphere />
           <div>
             <p className="section-kicker">About</p>
             <h1>I design, build, maintain, and improve.</h1>
-            <p>I’m a creative website designer experienced in WordPress, content organisation, responsive user experience, graphics, SEO, and digital marketing support.</p>
+            <p>I’m a Digital Marketing Specialist & Web Developer who brings strategy and hands-on creative work together. My experience spans WordPress, SEO, content, social media, responsive websites, and ongoing website care.</p>
           </div>
           <figure><img src="/grethiel-images/joy-grethiel.png" alt="Grethiel Joy Carbadilla G." /></figure>
         </header>
@@ -56,10 +58,18 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
-          <div className="education-card">
-            <p className="section-kicker">Education</p>
-            <div><h3>Bachelor of Science in Tourism Management</h3><p>Asian College of Technology IEF · 2021 — 2025</p></div>
-          </div>
+          <article className="education-card" aria-labelledby="education-title">
+            <div className="education-card-meta">
+              <p className="section-kicker">Education</p>
+              <p className="education-period">2021 — 2025</p>
+            </div>
+            <div className="education-card-copy">
+              <p className="education-type">Bachelor’s degree</p>
+              <h3 id="education-title">Bachelor of Science <span>in Tourism Management</span></h3>
+              <p className="education-school">Asian College of Technology IEF</p>
+              <p className="education-relevance">A foundation in communication, service, planning, and audience-centred experiences—skills I bring to every digital project.</p>
+            </div>
+          </article>
         </section>
       </main>
       <SiteFooter />
