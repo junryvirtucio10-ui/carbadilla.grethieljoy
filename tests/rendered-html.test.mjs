@@ -49,6 +49,14 @@ test("all portfolio routes share navigation with the correct active page", async
   }
 });
 
+test("the shared header uses document navigation that remains usable without the client router", async () => {
+  const source = await readFile(new URL("../app/components/site-header.tsx", import.meta.url), "utf8");
+  assert.doesNotMatch(source, /from ["']next\/link["']/);
+  assert.match(source, /<a className="brand-logo-link" href="\/"/);
+  assert.match(source, /<a href=\{item\.href\}/);
+  assert.match(source, /<a className="signature-project-link" href="\/contact"/);
+});
+
 test("every full-page project image exists and new project URLs have no trailing punctuation", async () => {
   const source = await readFile(new URL("../app/portfolio-data.ts", import.meta.url), "utf8");
   const images = [...source.matchAll(/image:\s*"([^"]+)"/g)].map(match => match[1]);

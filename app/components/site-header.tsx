@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const navigation = [
@@ -39,7 +38,9 @@ export function SiteHeader() {
         return;
       }
       if (event.key !== "Tab") return;
-      const focusable = [toggle.current, ...links].filter((item): item is HTMLElement => Boolean(item));
+      const focusable = [toggle.current, ...links].filter(
+        (item): item is HTMLButtonElement | HTMLAnchorElement => Boolean(item),
+      );
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
       if (event.shiftKey && document.activeElement === first) {
@@ -75,14 +76,16 @@ export function SiteHeader() {
       >
         <span className="signature-header-glint" aria-hidden="true" />
         <div className="signature-header-inner">
-          <Link className="brand-logo-link" href="/" aria-label="Grethiel Joy, home">
+          {/* A document navigation is intentional: Vinext's beta client router can swallow Link clicks in production. */}
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          <a className="brand-logo-link" href="/" aria-label="Grethiel Joy, home">
             <span className="brand-logo-crop" aria-hidden="true">
               <picture>
                 <source media="(max-width: 760px)" srcSet="/gj-mobile-icon.png" />
                 <img src="/grethiel-joy-logo.png" alt="" width="1920" height="640" />
               </picture>
             </span>
-          </Link>
+          </a>
 
           <button className="nav-toggle" ref={toggle} type="button" aria-label={open ? "Close navigation" : "Open navigation"} aria-expanded={open} aria-controls="portfolio-navigation" onClick={() => setOpen(!open)}>
             <span className="sr-only">{open ? "Close navigation" : "Open navigation"}</span>
@@ -91,16 +94,16 @@ export function SiteHeader() {
 
           <nav id="portfolio-navigation" className={`signature-nav${open ? " is-open" : ""}`} aria-label="Portfolio pages" ref={nav}>
             {navigation.map((item, index) => (
-              <Link href={item.href} key={item.href} aria-current={pathname === item.href ? "page" : undefined} onClick={() => setOpen(false)}>
+              <a href={item.href} key={item.href} aria-current={pathname === item.href ? "page" : undefined} onClick={() => setOpen(false)}>
                 <span>{item.label}</span><small className="nav-index" aria-hidden="true">{String(index + 1).padStart(2, "0")}</small>
-              </Link>
+              </a>
             ))}
           </nav>
 
-          <Link className="signature-project-link" href="/contact">
+          <a className="signature-project-link" href="/contact">
             <span>Start a project</span>
             <i aria-hidden="true">↗</i>
-          </Link>
+          </a>
         </div>
       </header>
     </>
