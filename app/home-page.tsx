@@ -18,7 +18,7 @@ export default function Home() {
               <a className="hero-button hero-button-primary" href="/work">View my work <span aria-hidden="true">↗</span></a>
               <a className="hero-button hero-button-secondary" href="/about">About me</a>
             </div>
-            <p className="hero-meta">Based in Cebu, Philippines 11123123<span aria-hidden="true">·</span> Available for remote projects</p>
+            <p className="hero-meta">Based in Cebu, Philippines <span aria-hidden="true">·</span> Available for remote projects</p>
           </div>
 
           <div className="hero-art">
