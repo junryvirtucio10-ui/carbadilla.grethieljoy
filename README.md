@@ -26,6 +26,19 @@ npm run build
 Vinext writes the browser assets to `dist/client` and the Cloudflare Worker to
 `dist/server`.
 
+## Optimize images
+
+After replacing a portrait, logo, section background, or project thumbnail,
+regenerate the responsive WebP assets before building:
+
+```bash
+npm run images:optimize
+```
+
+The original files remain the editable sources. Pages use the generated files
+in `public/optimized` and the 400-pixel thumbnails in
+`public/projects/thumbnails/mobile`.
+
 ## Deploy to your Cloudflare account
 
 Authenticate Wrangler once:

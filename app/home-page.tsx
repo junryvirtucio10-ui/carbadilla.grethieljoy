@@ -1,6 +1,6 @@
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
-import { projects } from "./portfolio-data";
+import { getProjectThumbnail, projects } from "./portfolio-data";
 import { HeroAtmosphere } from "./components/hero-atmosphere";
 
 export default function Home() {
@@ -24,10 +24,12 @@ export default function Home() {
           <div className="hero-art">
             <figure className="resume-portrait">
               <img
-                src="/grethiel-images/grethiel-joy.png"
+                src="/optimized/grethiel-joy-768.webp"
+                srcSet="/optimized/grethiel-joy-480.webp 480w, /optimized/grethiel-joy-768.webp 768w, /optimized/grethiel-joy-1023.webp 1023w"
+                sizes="(max-width: 650px) calc(100vw - 2rem), (max-width: 1100px) min(78vw, 560px), min(41vw, 590px)"
                 alt="Grethiel Joy Carbadilla G."
-                width="1024"
-                height="1536"
+                width="1023"
+                height="1537"
                 decoding="async"
                 fetchPriority="high"
               />
@@ -53,19 +55,20 @@ export default function Home() {
             <a className="arrow-link" href="/work">View all projects <span aria-hidden="true">↗</span></a>
           </header>
           <div className="home-project-grid">
-            {projects.slice(0, 2).map((project) => (
-              <article className="home-project-card" key={project.slug}>
+            {projects.slice(0, 2).map((project) => {
+              const thumbnail = getProjectThumbnail(project);
+              return <article className="home-project-card" key={project.slug}>
                 <a href={`/work#${project.slug}`}>
                   <figure>
-                    <img src={project.thumbnail ?? project.image} alt={project.alt} loading="lazy" decoding="async" />
+                    <img src={thumbnail.src} srcSet={thumbnail.srcSet} sizes="(max-width: 780px) calc(100vw - 2.4rem), 42vw" alt={project.alt} width="800" height="600" loading="lazy" decoding="async" />
                     <figcaption>{project.caption}</figcaption>
                   </figure>
                   <p>{project.role}</p>
                   <h3>{project.title}</h3>
                   <span>View project <b aria-hidden="true">↗</b></span>
                 </a>
-              </article>
-            ))}
+              </article>;
+            })}
           </div>
         </section>
 

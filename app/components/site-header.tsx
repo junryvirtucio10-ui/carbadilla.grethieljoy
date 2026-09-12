@@ -81,8 +81,8 @@ export function SiteHeader() {
           <a className="brand-logo-link" href="/" aria-label="Grethiel Joy, home">
             <span className="brand-logo-crop" aria-hidden="true">
               <picture>
-                <source media="(max-width: 760px)" srcSet="/gj-mobile-icon.png" />
-                <img src="/grethiel-joy-logo.png" alt="" width="1920" height="640" />
+                <source media="(max-width: 760px)" srcSet="/optimized/gj-mobile-icon-192.webp" />
+                <img src="/optimized/grethiel-joy-logo-640.webp" alt="" width="640" height="200" decoding="async" />
               </picture>
             </span>
           </a>

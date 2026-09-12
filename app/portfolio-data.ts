@@ -13,6 +13,17 @@ export type Project = {
   note?: string;
 };
 
+export function getProjectThumbnail(project: Project) {
+  const src = project.thumbnail ?? project.image;
+  const mobileSrc = src.startsWith("/projects/thumbnails/")
+    ? src.replace("/projects/thumbnails/", "/projects/thumbnails/mobile/")
+    : src;
+  return {
+    src,
+    srcSet: mobileSrc === src ? undefined : `${mobileSrc} 400w, ${src} 800w`,
+  };
+}
+
 export const projects: Project[] = [
   {
     slug: "zoe-wellness", title: "Zoë Wellness", category: "Health & wellness",
@@ -159,7 +170,7 @@ export const projects: Project[] = [
     role: "WordPress design & build",
     description:
       "A service-focused WordPress website for a Cleveland contractor, combining project galleries, trust signals, testimonials, and clear enquiry paths.",
-    image: "/projects/direct-construction.png",
+    image: "/projects/direct-construction.webp",
     alt: "Full-page screenshot of the Direct Construction, Inc. WordPress website",
     caption: "WordPress website · Construction",
     tags: ["WordPress", "Elementor", "Responsive design"],
@@ -172,7 +183,7 @@ export const projects: Project[] = [
     role: "Website design & content",
     description:
       "A bold sales-focused website for a UK trades business community, using strong calls to action, social proof, and conversion-led landing-page content.",
-    image: "/projects/tradie.png",
+    image: "/projects/tradie-growth.webp",
     alt: "Full-page screenshot of the Tradie growth website for UK trades businesses",
     caption: "Website design · Conversion content",
     tags: ["Landing pages", "Content", "Conversion design"],
@@ -185,7 +196,7 @@ export const projects: Project[] = [
     role: "Digital content",
     description:
       "Social graphics, campaign artwork, video reels, captions, and page content created for church updates, programmes, and events.",
-    image: "/projects/life-regeneration-church.png",
+    image: "/projects/life-regeneration-church.webp",
     alt: "Life Regeneration Church Facebook page featuring Accelerated Favor campaign artwork",
     caption: "Social media · Campaign creative",
     tags: ["Graphics", "Video reels", "Page management"],

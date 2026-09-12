@@ -1507,7 +1507,7 @@ select {
   padding: clamp(7rem, 11vw, 11rem) 8vw;
   background:
     linear-gradient(105deg, rgba(248, 248, 248, 0.76), rgba(248, 248, 248, 0.58)),
-    url("/home-intro-background.png") center / cover no-repeat,
+    url("/optimized/home-intro-background-1672.webp") center / cover no-repeat,
     var(--porcelain);
 }
 
@@ -1527,7 +1527,7 @@ select {
   letter-spacing: -0.055em;
 }
 .about-story {
-  background-image: url("/about-story-bg.png");
+  background-image: url("/optimized/about-story-bg-2039.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1837,7 +1837,7 @@ select {
   gap: 6vw;
   padding: clamp(7rem, 11vw, 11rem) 8vw;
   background-color: var(--silk);
-  background-image: url("/about-story-bg.png");
+  background-image: url("/optimized/about-story-bg-2039.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -2248,6 +2248,14 @@ select {
 
   .home-intro {
     background-position: center, 72% center;
+    background-image:
+      linear-gradient(105deg, rgba(248, 248, 248, 0.76), rgba(248, 248, 248, 0.58)),
+      url("/optimized/home-intro-background-800.webp");
+  }
+
+  .about-story,
+  .about-page-story {
+    background-image: url("/optimized/about-story-bg-800.webp");
   }
 
   .hero {

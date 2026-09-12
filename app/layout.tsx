@@ -24,8 +24,8 @@ export async function generateMetadata(): Promise<Metadata> {
     description,
     metadataBase: new URL(origin),
     icons: {
-      icon: [{ url: "/gj-favicon.png", type: "image/png" }],
-      shortcut: "/gj-favicon.png",
+      icon: [{ url: "/optimized/gj-favicon-64.png", type: "image/png", sizes: "64x64" }],
+      shortcut: "/optimized/gj-favicon-64.png",
     },
     openGraph: {
       type: "website",
@@ -58,8 +58,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/gj-favicon.png?v=2" type="image/png" sizes="1024x1024" />
-        <link rel="shortcut icon" href="/gj-favicon.png?v=2" type="image/png" />
+        <link rel="icon" href="/optimized/gj-favicon-64.png" type="image/png" sizes="64x64" />
+        <link rel="shortcut icon" href="/optimized/gj-favicon-64.png" type="image/png" />
       </head>
       <body>{children}</body>
     </html>

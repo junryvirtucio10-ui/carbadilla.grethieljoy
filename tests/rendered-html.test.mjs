@@ -1,5 +1,5 @@
 ﻿import assert from "node:assert/strict";
-import { access, readFile } from "node:fs/promises";
+import { access, readFile, stat } from "node:fs/promises";
 import test from "node:test";
 
 const { default: worker } = await import(new URL("../dist/server/index.js", import.meta.url).href);
@@ -19,7 +19,8 @@ test("homepage preserves the portrait and heading while leading with marketing a
   const html = await render();
   assert.match(html, /Digital Marketing Specialist &amp; Web Developer/);
   assert.match(html, /Websites made <span>clear and useful\.<\/span>/);
-  assert.match(html, /src="\/grethiel-images\/grethiel-joy\.png"/);
+  assert.match(html, /src="\/optimized\/grethiel-joy-768\.webp"/);
+  assert.match(html, /srcSet="\/optimized\/grethiel-joy-480\.webp 480w/);
   assert.doesNotMatch(html, /Pause background|Play background/);
   assert.match(html, /View my work/);
   assert.match(html, /About me/);
@@ -37,6 +38,9 @@ test("work renders all 20 projects with accessible preview actions and real scre
   const images = [...html.matchAll(/src="(\/projects\/thumbnails\/[^"]+)"/g)].map(match => match[1]);
   assert.equal(new Set(images).size, 20);
   for (const image of images) await access(new URL(`../public${image}`, import.meta.url));
+  const mobileImages = images.map(image => image.replace("/projects/thumbnails/", "/projects/thumbnails/mobile/"));
+  assert.equal(mobileImages.length, 20);
+  for (const image of mobileImages) await access(new URL(`../public${image}`, import.meta.url));
 });
 
 test("all portfolio routes share navigation with the correct active page", async () => {
@@ -55,6 +59,21 @@ test("the shared header uses document navigation that remains usable without the
   assert.match(source, /<a className="brand-logo-link" href="\/"/);
   assert.match(source, /<a href=\{item\.href\}/);
   assert.match(source, /<a className="signature-project-link" href="\/contact"/);
+});
+
+test("critical responsive images stay within performance budgets", async () => {
+  const budgets = [
+    ["optimized/grethiel-joy-1023.webp", 100],
+    ["optimized/grethiel-joy-480.webp", 35],
+    ["optimized/grethiel-joy-logo-640.webp", 50],
+    ["optimized/gj-mobile-icon-192.webp", 25],
+    ["optimized/home-intro-background-1672.webp", 50],
+    ["optimized/gj-favicon-64.png", 10],
+  ];
+  for (const [image, maxKilobytes] of budgets) {
+    const info = await stat(new URL(`../public/${image}`, import.meta.url));
+    assert.ok(info.size <= maxKilobytes * 1024, `${image} must remain under ${maxKilobytes} KB`);
+  }
 });
 
 test("every full-page project image exists and new project URLs have no trailing punctuation", async () => {

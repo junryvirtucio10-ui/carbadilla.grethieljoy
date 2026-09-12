@@ -22,7 +22,18 @@ export default function AboutPage() {
             <h1>I design, build, maintain, and improve.</h1>
             <p>I’m a Digital Marketing Specialist & Web Developer who brings strategy and hands-on creative work together. My experience spans WordPress, SEO, content, social media, responsive websites, and ongoing website care.</p>
           </div>
-          <figure><img src="/grethiel-images/joy-grethiel.png" alt="Grethiel Joy Carbadilla G." /></figure>
+          <figure>
+            <img
+              src="/optimized/joy-grethiel-768.webp"
+              srcSet="/optimized/joy-grethiel-480.webp 480w, /optimized/joy-grethiel-768.webp 768w, /optimized/joy-grethiel-1023.webp 1023w"
+              sizes="(max-width: 760px) calc(100vw - 2.4rem), min(31vw, 496px)"
+              width="1023"
+              height="1537"
+              alt="Grethiel Joy Carbadilla G."
+              decoding="async"
+              fetchPriority="high"
+            />
+          </figure>
         </header>
 
         <section className="about-story" aria-labelledby="approach-title">
