@@ -27,19 +27,19 @@ test("homepage preserves the portrait and heading while leading with marketing a
   assert.doesNotMatch(html, /Your site is taking shape/);
 });
 
-test("work renders all 20 projects with accessible preview actions and real screenshot assets", async () => {
+test("work renders all 31 projects with accessible preview actions and real screenshot assets", async () => {
   const html = await render("/work");
-  assert.equal((html.match(/class="gallery-card-open"/g) ?? []).length, 20);
-  for (const name of ["Zoë Wellness", "Innovamed Industries", "Globall Workforce", "Premier Island Jobs", "Flyover Travel", "Perfect Foto", "Davis Global Group", "Amrocor", "Buddy Bright", "Sail with Seth", "Thriving Gutters", "Oyins International", "Orbit Building &amp; Remodeling", "Classe Credit Consulting", "Alliance Care Medical", "Assistmynt", "Newsom Eye", "Direct Construction Website", "Tradie Growth Website", "Life Regeneration Church"]) {
+  assert.equal((html.match(/class="gallery-card-open"/g) ?? []).length, 31);
+  for (const name of ["ZoëLogics", "Home Growth Capital", "The Torch Guys", "Davis Media", "Jimenez Real Estate Group", "Idiart Law Group", "MT Grand Construction", "Damon Davis", "Clark Gregory Design", "MT Grand Homes", "Lucky Portables", "Zoë Wellness", "Innovamed Industries", "Globall Workforce", "Premier Island Jobs", "Flyover Travel", "Perfect Foto", "Davis Global Group", "Amrocor", "Buddy Bright", "Sail with Seth", "Thriving Gutters", "Oyins International", "Orbit Building &amp; Remodeling", "Classe Credit Consulting", "Alliance Care Medical", "Assistmynt", "Newsom Eye", "Direct Construction Website", "Tradie Growth Website", "Life Regeneration Church"]) {
     assert.ok(html.includes(name), `${name} must appear in the gallery`);
   }
-  assert.equal((html.match(/aria-haspopup="dialog"/g) ?? []).length, 20);
+  assert.equal((html.match(/aria-haspopup="dialog"/g) ?? []).length, 31);
   assert.match(html, /Domain capture/);
   const images = [...html.matchAll(/src="(\/projects\/thumbnails\/[^"]+)"/g)].map(match => match[1]);
-  assert.equal(new Set(images).size, 20);
+  assert.equal(new Set(images).size, 31);
   for (const image of images) await access(new URL(`../public${image}`, import.meta.url));
   const mobileImages = images.map(image => image.replace("/projects/thumbnails/", "/projects/thumbnails/mobile/"));
-  assert.equal(mobileImages.length, 20);
+  assert.equal(mobileImages.length, 31);
   for (const image of mobileImages) await access(new URL(`../public${image}`, import.meta.url));
 });
 
@@ -76,15 +76,33 @@ test("critical responsive images stay within performance budgets", async () => {
   }
 });
 
+test("new project imagery stays within gallery performance budgets", async () => {
+  const newProjectSlugs = [
+    "zoelogics", "home-growth-capital", "the-torch-guys", "davis-media",
+    "jimenez-real-estate-group", "idiart-law-group", "mt-grand-construction",
+    "damon-davis", "clark-gregory-design", "mt-grand-homes", "lucky-portables",
+  ];
+  for (const slug of newProjectSlugs) {
+    const [fullPage, thumbnail, mobileThumbnail] = await Promise.all([
+      stat(new URL(`../public/projects/${slug}.webp`, import.meta.url)),
+      stat(new URL(`../public/projects/thumbnails/${slug}.webp`, import.meta.url)),
+      stat(new URL(`../public/projects/thumbnails/mobile/${slug}.webp`, import.meta.url)),
+    ]);
+    assert.ok(fullPage.size <= 600 * 1024, `${slug} full-page preview must remain under 600 KB`);
+    assert.ok(thumbnail.size <= 100 * 1024, `${slug} desktop thumbnail must remain under 100 KB`);
+    assert.ok(mobileThumbnail.size <= 35 * 1024, `${slug} mobile thumbnail must remain under 35 KB`);
+  }
+});
+
 test("every full-page project image exists and new project URLs have no trailing punctuation", async () => {
   const source = await readFile(new URL("../app/portfolio-data.ts", import.meta.url), "utf8");
   const images = [...source.matchAll(/image:\s*"([^"]+)"/g)].map(match => match[1]);
-  assert.equal(images.length, 20);
+  assert.equal(images.length, 31);
   for (const image of images) await access(new URL(`../public${image}`, import.meta.url));
   const urls = [...source.matchAll(/url:\s*"([^"]+)"/g)].map(match => match[1]);
-  assert.equal(urls.length, 17);
+  assert.equal(urls.length, 27);
   for (const url of urls) {
     assert.equal(new URL(url).protocol, "https:");
-    assert.equal(new URL(url).pathname, "/");
+    assert.doesNotMatch(url, /[.,;:!?)]$/);
   }
 });

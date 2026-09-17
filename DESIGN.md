@@ -91,7 +91,7 @@ Hero background motion is specifically authorised by the September 2026 brief, r
 ## Do's and Don'ts
 
 - Keep Digital Marketing & Web Development first in profile copy and metadata.
-- Preserve all 20 projects and use optimised thumbnails separately from full-page previews.
+- Preserve all 31 projects and use optimised thumbnails separately from full-page previews.
 - Maintain the user's existing staged edits; this refresh builds on them.
 - Do not replace the portrait, rewrite historical employment titles, or fabricate project outcomes.
 
