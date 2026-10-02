@@ -20,6 +20,19 @@ export function SiteHeader() {
   const nav = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    const element = header.current;
+    const shell = element?.closest<HTMLElement>(".portfolio-shell");
+    if (!element || !shell) return;
+    const observer = new ResizeObserver(() => {
+      // Keep the first-screen height stable when navigation contracts or opens.
+      if (element.classList.contains("is-scrolled") || element.classList.contains("menu-is-open")) return;
+      shell.style.setProperty("--gj-header-height", `${element.getBoundingClientRect().height}px`);
+    });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
     const updateHeader = () => setScrolled(window.scrollY > 28);
     updateHeader();
     window.addEventListener("scroll", updateHeader, { passive: true });

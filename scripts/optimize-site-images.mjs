@@ -40,6 +40,8 @@ await webp("grethiel-joy-logo-white.png", "optimized/grethiel-joy-logo-white-960
 await webp("gj-mobile-icon.png", "optimized/gj-mobile-icon-192.webp", { width: 192, lossless: true });
 await webp("home-intro-background.png", "optimized/home-intro-background-800.webp", { width: 800, quality: 74 });
 await webp("home-intro-background.png", "optimized/home-intro-background-1672.webp", { width: 1672, quality: 74 });
+await webp("profile-background.png", "optimized/profile-background-800.webp", { width: 800, quality: 84 });
+await webp("profile-background.png", "optimized/profile-background-1678.webp", { width: 1678, quality: 84 });
 await webp("about-story-bg.png", "optimized/about-story-bg-800.webp", { width: 800, quality: 74 });
 await webp("about-story-bg.png", "optimized/about-story-bg-2039.webp", { width: 2039, quality: 74 });
 

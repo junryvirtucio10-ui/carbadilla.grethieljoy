@@ -1,4 +1,110 @@
 /* Shared cocoa-and-gold navigation, hero atmosphere, and project gallery. */
+:root { --gj-header-height: 93px; }
+
+/* Include the sticky navigation in the first screen, with room for long content. */
+.hero {
+  min-height: calc(100vh - var(--gj-header-height));
+  min-height: calc(100dvh - var(--gj-header-height));
+  padding-block: clamp(1.5rem, 5dvh, 5rem);
+}
+.hero h1 { font-size: clamp(3rem, min(7vw, 10dvh), 7.7rem); }
+.hero-art {
+  width: min(41vw, 590px, 65dvh);
+  height: auto;
+  aspect-ratio: 1;
+}
+
+@media (min-width: 651px) and (max-width: 1000px) {
+  .hero { display: grid; }
+  .hero-copy { padding-top: 0; }
+  .hero-art { margin: 0; }
+}
+
+@media (max-width: 760px) {
+  :root { --gj-header-height: 79px; }
+}
+
+@media (max-width: 650px) {
+  .hero {
+    justify-content: center;
+    padding-block: clamp(.75rem, 2dvh, 1.5rem);
+  }
+  .hero .eyebrow { margin-bottom: .75rem; }
+  .hero h1 { font-size: clamp(2.75rem, min(12vw, 7dvh), 4.5rem); }
+  .hero-art {
+    width: clamp(8rem, 20dvh, 12rem);
+    height: auto;
+    align-self: center;
+    margin: .75rem auto 0;
+  }
+  .hero-lede { margin-top: .75rem; font-size: 1rem; line-height: 1.45; }
+  .hero-actions { flex-direction: row; gap: .75rem; margin-top: .75rem; }
+  .hero-button { width: auto; min-height: 44px; padding: .75rem 1rem; }
+  .hero-meta { margin-top: .75rem; letter-spacing: .02em; line-height: 1.4; }
+}
+
+/* Profile: one left-aligned reading column over the supplied workspace photo. */
+.home-intro {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+  min-height: 780px;
+  padding-block: clamp(6rem, 8vw, 10rem);
+  background: var(--silk);
+}
+.home-intro::before {
+  position: absolute;
+  inset: 0 0 0 28%;
+  z-index: -2;
+  content: "";
+  background: url("/optimized/profile-background-1678.webp") center / cover no-repeat;
+}
+.home-intro::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background:
+    linear-gradient(to bottom, var(--silk), transparent 18%, transparent 78%, var(--silk)),
+    linear-gradient(to right, var(--silk) 20%, rgb(242 237 232 / 98%) 32%, rgb(242 237 232 / 90%) 43%, rgb(242 237 232 / 35%) 57%, transparent 72%);
+  pointer-events: none;
+}
+.home-intro > .section-kicker {
+  width: min(100%, 20rem);
+  margin: 0;
+}
+.home-intro > div { width: min(46%, 38rem); }
+.home-intro h2 { max-width: 13ch; font-size: clamp(3.4rem, 5vw, 6rem); }
+.home-intro > div > p { margin: 2rem 0 0; color: var(--ink); }
+.home-intro .home-page-links { margin: 2rem 0 0; gap: 1.5rem; }
+
+@media (max-width: 1000px) {
+  .home-intro > div { width: min(60%, 36rem); }
+  .home-intro::before { left: 20%; background-position: 55% center; }
+  .home-intro::after {
+    background:
+      linear-gradient(to bottom, var(--silk), transparent 18%, transparent 78%, var(--silk)),
+      linear-gradient(to right, var(--silk) 15%, rgb(242 237 232 / 96%) 38%, rgb(242 237 232 / 86%) 52%, transparent 85%);
+  }
+}
+@media (max-width: 650px) {
+  .home-intro { min-height: auto; padding-block: 5rem; gap: 1.5rem; }
+  .home-intro > div { width: 100%; }
+  .home-intro h2 { font-size: clamp(3rem, 12vw, 4.5rem); }
+  .home-intro::before {
+    inset: 0;
+    background-image: url("/optimized/profile-background-800.webp");
+    background-position: 52% center;
+  }
+  .home-intro::after {
+    background: linear-gradient(to bottom, var(--silk), rgb(242 237 232 / 88%) 18%, rgb(242 237 232 / 90%) 78%, var(--silk));
+  }
+  .home-intro .home-page-links { grid-template-columns: 1fr; gap: .5rem; }
+}
+
 .signature-header {
   --header-x: 50%;
   --header-y: 50%;
