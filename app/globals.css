@@ -288,7 +288,7 @@ select {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  margin: 0 0 2rem;
+  margin: 0 0 1rem;
   color: var(--cocoa);
 }
 
@@ -322,7 +322,7 @@ select {
 
 .hero-lede {
   max-width: 43rem;
-  margin: 2.2rem 0 0;
+  margin: 1.2rem 0 0;
   color: var(--cocoa);
   font-size: clamp(1.05rem, 1.3vw, 1.22rem);
   line-height: 1.72;

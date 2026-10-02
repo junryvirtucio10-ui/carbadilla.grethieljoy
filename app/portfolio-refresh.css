@@ -7,7 +7,7 @@
   min-height: calc(100dvh - var(--gj-header-height));
   padding-block: clamp(1.5rem, 5dvh, 5rem);
 }
-.hero h1 { font-size: clamp(3rem, min(7vw, 10dvh), 7.7rem); }
+.hero h1 { font-size: clamp(4.2rem, min(10.2vw, 14.4dvh), 11.04rem); }
 .hero-art {
   width: min(41vw, 590px, 65dvh);
   height: auto;
@@ -30,7 +30,7 @@
     padding-block: clamp(.75rem, 2dvh, 1.5rem);
   }
   .hero .eyebrow { margin-bottom: .75rem; }
-  .hero h1 { font-size: clamp(2.75rem, min(12vw, 7dvh), 4.5rem); }
+  .hero h1 { font-size: clamp(3.72rem, min(16.8vw, 10.2dvh), 6.3rem); }
   .hero-art {
     width: clamp(8rem, 20dvh, 12rem);
     height: auto;

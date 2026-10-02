@@ -24,8 +24,8 @@ export default function AboutPage() {
           </div>
           <figure>
             <img
-              src="/optimized/joy-grethiel-768.webp"
-              srcSet="/optimized/joy-grethiel-480.webp 480w, /optimized/joy-grethiel-768.webp 768w, /optimized/joy-grethiel-1023.webp 1023w"
+              src="/optimized/grethiel-joy-768.webp"
+              srcSet="/optimized/grethiel-joy-480.webp 480w, /optimized/grethiel-joy-768.webp 768w, /optimized/grethiel-joy-1023.webp 1023w"
               sizes="(max-width: 760px) calc(100vw - 2.4rem), min(31vw, 496px)"
               width="1023"
               height="1537"

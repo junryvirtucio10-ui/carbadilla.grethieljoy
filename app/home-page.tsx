@@ -24,8 +24,8 @@ export default function Home() {
           <div className="hero-art">
             <figure className="resume-portrait">
               <img
-                src="/optimized/grethiel-joy-768.webp"
-                srcSet="/optimized/grethiel-joy-480.webp 480w, /optimized/grethiel-joy-768.webp 768w, /optimized/grethiel-joy-1023.webp 1023w"
+                src="/optimized/joy-grethiel-768.webp"
+                srcSet="/optimized/joy-grethiel-480.webp 480w, /optimized/joy-grethiel-768.webp 768w, /optimized/joy-grethiel-1023.webp 1023w"
                 sizes="(max-width: 650px) calc(100vw - 2rem), (max-width: 1100px) min(78vw, 560px), min(41vw, 590px)"
                 alt="Grethiel Joy Carbadilla G."
                 width="1023"
