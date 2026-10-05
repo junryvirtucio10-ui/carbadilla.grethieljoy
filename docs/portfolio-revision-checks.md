@@ -15,5 +15,5 @@ The 17 supplied screenshots were converted into full-page WebP previews and sepa
 ## Existing project issues and environment limits
 
 - Full-project TypeScript check reports missing Cloudflare worker type declarations in `db/index.ts` and `worker/index.ts`. No errors were reported in the revised UI files.
-- Full-project lint still reports existing placeholder social links in `app/components/site-footer.tsx` and framework link rules in the footer/design-system page. The strict design audit additionally identifies the existing actionless design-system example button. These predate the revision and are preserved with the user's staged changes. Audit evidence is in `premium-audit.json`.
+- Full-project lint still reports framework link rules in the footer/design-system page. The strict design audit additionally identifies the existing actionless design-system example button. These predate the revision and are preserved with the user's staged changes. Audit evidence is in `premium-audit.json`.
 - Browser inventory returned no available browsers, and opening the in-app browser returned `Browser is not available: iab`. Visual, mobile, and browser interaction QA could not be performed. Modal focus, Escape, backdrop dismissal, category changes, URL history, and reduced-motion behavior still need a real-browser verification pass.

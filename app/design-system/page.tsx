@@ -61,6 +61,7 @@ export default function DesignSystemPage() {
       </a>
 
       <header className="system-bar">
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/" aria-label="Back to Grethiel Joy's portfolio">
           GJ<span aria-hidden="true">.</span>
         </a>
@@ -70,6 +71,7 @@ export default function DesignSystemPage() {
           <a href="#components">Components</a>
           <a href="#voice">Voice</a>
         </nav>
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a className="system-back-link" href="/">
           View portfolio <span aria-hidden="true">↗</span>
         </a>
@@ -294,7 +296,7 @@ export default function DesignSystemPage() {
             <label htmlFor="example-email">Email address</label>
             <div>
               <input id="example-email" type="email" placeholder="you@example.com" />
-              <button type="button">Continue <span aria-hidden="true">→</span></button>
+              <button type="button" disabled>Continue <span aria-hidden="true">→</span></button>
             </div>
             <small>Use sentence case and say what happens next.</small>
           </article>
@@ -337,6 +339,7 @@ export default function DesignSystemPage() {
           <h2>Built in cocoa.<br /><span>Signed in gold.</span></h2>
         </div>
         <p>Version 1.1 · August 2026</p>
+        {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/">Return to portfolio <span aria-hidden="true">↗</span></a>
       </footer>
     </main>

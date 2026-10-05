@@ -2,23 +2,34 @@ import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
 import { getProjectThumbnail, projects } from "./portfolio-data";
 import { HeroAtmosphere } from "./components/hero-atmosphere";
+import { ScrollPrompt } from "./components/scroll-prompt";
 
 export default function Home() {
   return (
     <div className="portfolio-shell">
       <SiteHeader />
-      <main id="main-content">
-        <section className="hero" aria-labelledby="hero-title">
+      <main id="main-content" className="scroll-page">
+        <section id="introduction" className="hero scroll-chapter" aria-labelledby="hero-title">
           <HeroAtmosphere />
           <div className="hero-copy">
             <p className="eyebrow">Digital Marketing & Web Development</p>
-            <h1 id="hero-title">Websites made <span>clear and useful.</span></h1>
+            <h1 id="hero-title">
+              <span className="hero-title-line">Websites made</span>
+              <em className="hero-title-accent">clear and useful.</em>
+            </h1>
             <p className="hero-lede">I’m Grethiel Joy, a Digital Marketing Specialist & Web Developer based in Cebu. I bring together marketing strategy, compelling content, and responsive websites to help businesses connect with the right people and turn interest into action.</p>
             <div className="hero-actions">
-              <a className="hero-button hero-button-primary" href="/work">View my work <span aria-hidden="true">↗</span></a>
-              <a className="hero-button hero-button-secondary" href="/about">About me</a>
+              <a className="hero-button hero-button-primary" href="/work">
+                <span className="hero-button-label">View my work</span>
+                <span className="hero-button-icon" aria-hidden="true">↗</span>
+              </a>
+              <a className="hero-button hero-button-secondary" href="/about">
+                <span className="hero-button-label">About me</span>
+                <span className="hero-button-icon" aria-hidden="true">↗</span>
+              </a>
             </div>
             <p className="hero-meta">Based in Cebu, Philippines <span aria-hidden="true">·</span> Available for remote projects</p>
+            <ScrollPrompt href="#profile" label="Continue to my profile" />
           </div>
 
           <div className="hero-art">
@@ -37,7 +48,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="home-intro" aria-labelledby="home-intro-title">
+        <section id="profile" className="home-intro scroll-chapter" aria-labelledby="home-intro-title">
           <p className="section-kicker">Profile</p>
           <div>
             <h2 id="home-intro-title">Marketing with purpose. Websites that work.</h2>
@@ -49,7 +60,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="home-featured" aria-labelledby="featured-title">
+        <section id="selected-work" className="home-featured scroll-chapter" aria-labelledby="featured-title">
           <header className="home-featured-heading">
             <div><p className="section-kicker">Selected work</p><h2 id="featured-title">A quick look at recent projects.</h2></div>
             <a className="arrow-link" href="/work">View all projects <span aria-hidden="true">↗</span></a>
@@ -72,13 +83,13 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="home-contact-strip" aria-label="Contact invitation">
+        <section id="contact-invitation" className="home-contact-strip scroll-chapter" aria-label="Contact invitation">
           <div className="home-contact-main">
             <div className="home-contact-copy">
               <p>Have a website or digital project in mind?</p>
-              <h2>Let’s make the next idea <em>clear, useful, and ready to work.</em></h2>
+              <h2>Let’s make it <em>clear, useful, and ready to work.</em></h2>
             </div>
-            <a href="/contact"><span>Let’s talk</span><b aria-hidden="true">↗</b></a>
+            <a href="/contact"><span>Start a project</span><b aria-hidden="true">↗</b></a>
           </div>
         </section>
       </main>

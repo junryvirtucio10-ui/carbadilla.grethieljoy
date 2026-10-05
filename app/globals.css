@@ -24,6 +24,20 @@
   --gj-body: "Trebuchet MS", "Segoe UI", sans-serif;
   --gj-utility: Consolas, "Courier New", monospace;
 
+  /* Shared heading hierarchy: page title → section → feature → card. */
+  --gj-heading-page-size: clamp(3.2rem, 6.25vw, 7.25rem);
+  --gj-heading-section-size: clamp(2.9rem, 5vw, 5.75rem);
+  --gj-heading-feature-size: clamp(2.25rem, 3.35vw, 4rem);
+  --gj-heading-card-size: clamp(1.6rem, 2vw, 2.25rem);
+  --gj-heading-page-leading: 0.9;
+  --gj-heading-section-leading: 0.95;
+  --gj-heading-feature-leading: 1;
+  --gj-heading-card-leading: 1.12;
+  --gj-heading-page-tracking: -0.06em;
+  --gj-heading-section-tracking: -0.05em;
+  --gj-heading-feature-tracking: -0.04em;
+  --gj-heading-card-tracking: -0.025em;
+
   --gj-space-1: 0.25rem;
   --gj-space-2: 0.5rem;
   --gj-space-3: 0.75rem;
@@ -34,6 +48,14 @@
   --gj-space-16: 4rem;
   --gj-space-24: 6rem;
   --gj-space-32: 8rem;
+
+  /* One horizontal rhythm for the shared shell and every full-bleed page section. */
+  --gj-content-max: 1660px;
+  --gj-page-gutter: clamp(1.25rem, 2.4vw, 3rem);
+  --gj-page-inset: max(
+    var(--gj-page-gutter),
+    calc((100vw - var(--gj-content-max)) / 2)
+  );
 
   --gj-radius-small: 0.5rem;
   --gj-radius-medium: 1rem;
@@ -310,7 +332,7 @@ select {
   letter-spacing: -0.07em;
 }
 
-.hero h1 span {
+.hero-title-accent {
   display: inline;
   margin: 0;
   color: var(--champagne);
@@ -352,7 +374,7 @@ select {
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.hero-button span {
+.hero-button-icon {
   transition: transform 180ms ease;
 }
 
@@ -372,8 +394,8 @@ select {
   transform: translate(-2px, -2px);
 }
 
-.hero-button:hover span,
-.hero-button:focus-visible span {
+.hero-button:hover .hero-button-icon,
+.hero-button:focus-visible .hero-button-icon {
   transform: translate(0.2rem, -0.2rem);
 }
 
@@ -1402,6 +1424,14 @@ select {
   stroke-width: 1.8;
 }
 
+.footer-social-links path:not(:only-child) {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
 .footer-social-links .social-icon-dot {
   fill: currentColor;
 }
@@ -1946,37 +1976,6 @@ select {
   }
 }
 
-@keyframes section-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(26px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .home-intro > *,
-    .home-featured-heading > *,
-    .home-project-card,
-    .home-contact-strip > *,
-    .project,
-    .about-story > *,
-    .skills-heading > *,
-    .skills-layout > *,
-    .education-card,
-    .experience-list li {
-      animation: section-reveal linear both;
-      animation-timeline: view();
-      animation-range: entry 5% cover 28%;
-    }
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -2048,10 +2047,7 @@ select {
     font-size: clamp(4.2rem, 15vw, 8rem);
   }
 
-  .hero h1 span {
-    margin-left: 0.1em;
-    white-space: normal;
-  }
+  .hero-title-accent { white-space: normal; }
 
   .hero-intro {
     grid-template-columns: 1fr;
@@ -2333,7 +2329,7 @@ select {
     line-height: 0.88;
   }
 
-  .hero h1 span {
+  .hero-title-accent {
     font-size: 1em;
   }
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { HeroAtmosphere } from "../components/hero-atmosphere";
+import { ScrollPrompt } from "../components/scroll-prompt";
 import { SiteFooter } from "../components/site-footer";
 import { SiteHeader } from "../components/site-header";
 import { skills, tools } from "../portfolio-data";
@@ -14,13 +15,14 @@ export default function AboutPage() {
   return (
     <div className="portfolio-shell">
       <SiteHeader />
-      <main id="main-content" className="inner-page">
-        <header className="page-hero page-hero-portrait">
+      <main id="main-content" className="inner-page scroll-page">
+        <header id="about-introduction" className="page-hero page-hero-portrait scroll-chapter">
           <HeroAtmosphere />
           <div>
             <p className="section-kicker">About</p>
             <h1>I design, build, maintain, and improve.</h1>
             <p>I’m a Digital Marketing Specialist & Web Developer who brings strategy and hands-on creative work together. My experience spans WordPress, SEO, content, social media, responsive websites, and ongoing website care.</p>
+            <ScrollPrompt href="#approach" label="See how I work" />
           </div>
           <figure>
             <img
@@ -36,7 +38,7 @@ export default function AboutPage() {
           </figure>
         </header>
 
-        <section className="about-story" aria-labelledby="approach-title">
+        <section id="approach" className="about-story scroll-chapter" aria-labelledby="approach-title">
           <p className="section-kicker">How I work</p>
           <div>
             <h2 id="approach-title">Clear from the first click. Useful after launch.</h2>
@@ -44,7 +46,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="skills-section" aria-labelledby="skills-title">
+        <section id="toolkit" className="skills-section scroll-chapter" aria-labelledby="skills-title">
           <header className="skills-heading">
             <p className="section-kicker">Skills & tools</p>
             <h2 id="skills-title">A practical digital toolkit.</h2>

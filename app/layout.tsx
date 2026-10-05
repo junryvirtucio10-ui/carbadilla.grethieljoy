@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
+import { ScrollProgress } from "./components/scroll-progress";
+import { ScrollReveals } from "./components/scroll-reveals";
 import "./globals.css";
 import "./portfolio-refresh.css";
+import "./scroll-experience.css";
 
 const title = "Grethiel Joy — Digital Marketing & Web Development";
 const description =
@@ -61,7 +64,11 @@ export default function RootLayout({
         <link rel="icon" href="/optimized/gj-favicon-64.png" type="image/png" sizes="64x64" />
         <link rel="shortcut icon" href="/optimized/gj-favicon-64.png" type="image/png" />
       </head>
-      <body>{children}</body>
+      <body>
+        <ScrollProgress />
+        <ScrollReveals />
+        {children}
+      </body>
     </html>
   );
 }

@@ -11,8 +11,8 @@ export default function ContactPage() {
   return (
     <div className="portfolio-shell">
       <SiteHeader />
-      <main id="main-content">
-        <section className="contact-section contact-page" aria-labelledby="contact-title">
+      <main id="main-content" className="scroll-page">
+        <section className="contact-section contact-page scroll-chapter" aria-labelledby="contact-title">
           <div className="contact-copy">
             <p className="section-kicker">Start a project</p>
             <h1 id="contact-title">Let’s make the next digital thing <em>clear, useful, and memorable.</em></h1>

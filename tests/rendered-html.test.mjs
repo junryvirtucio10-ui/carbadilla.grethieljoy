@@ -18,9 +18,11 @@ async function render(path = "/") {
 test("homepage preserves the portrait and heading while leading with marketing and development", async () => {
   const html = await render();
   assert.match(html, /Digital Marketing Specialist &amp; Web Developer/);
-  assert.match(html, /Websites made <span>clear and useful\.<\/span>/);
-  assert.match(html, /src="\/optimized\/grethiel-joy-768\.webp"/);
-  assert.match(html, /srcSet="\/optimized\/grethiel-joy-480\.webp 480w/);
+  assert.match(html, /<span class="hero-title-line">Websites made<\/span>/);
+  assert.match(html, /<em class="hero-title-accent">clear and useful\.<\/em>/);
+  assert.equal((html.match(/class="hero-button-icon"/g) ?? []).length, 2);
+  assert.match(html, /src="\/optimized\/joy-grethiel-768\.webp"/);
+  assert.match(html, /srcSet="\/optimized\/joy-grethiel-480\.webp 480w/);
   assert.doesNotMatch(html, /Pause background|Play background/);
   assert.match(html, /View my work/);
   assert.match(html, /About me/);
@@ -34,12 +36,16 @@ test("work renders all 31 projects with accessible preview actions and real scre
     assert.ok(html.includes(name), `${name} must appear in the gallery`);
   }
   assert.equal((html.match(/aria-haspopup="dialog"/g) ?? []).length, 31);
+  assert.match(html, /class="work-hero-showcase"/);
+  assert.equal((html.match(/class="work-hero-preview"/g) ?? []).length, 3);
+  assert.match(html, /<strong>31<\/strong><span>projects<\/span>/);
+  assert.match(html, /<strong>5<\/strong><span>focus areas<\/span>/);
   assert.match(html, /Domain capture/);
   const images = [...html.matchAll(/src="(\/projects\/thumbnails\/[^"]+)"/g)].map(match => match[1]);
   assert.equal(new Set(images).size, 31);
   for (const image of images) await access(new URL(`../public${image}`, import.meta.url));
   const mobileImages = images.map(image => image.replace("/projects/thumbnails/", "/projects/thumbnails/mobile/"));
-  assert.equal(mobileImages.length, 31);
+  assert.equal(mobileImages.length, 34);
   for (const image of mobileImages) await access(new URL(`../public${image}`, import.meta.url));
 });
 
@@ -53,12 +59,130 @@ test("all portfolio routes share navigation with the correct active page", async
   }
 });
 
+test("the portfolio stays multi-page while every route uses the shared scroll experience", async () => {
+  const routes = ["/", "/work", "/about", "/experience", "/contact"];
+  for (const path of routes) {
+    const html = await render(path);
+    assert.match(html, /class="[^"]*scroll-page[^"]*"/);
+    assert.match(html, /class="page-scroll-progress"/);
+    assert.match(html, /class="[^"]*scroll-chapter[^"]*"/);
+  }
+
+  const home = await render("/");
+  const work = await render("/work");
+  const about = await render("/about");
+  assert.match(home, /href="#profile"/);
+  assert.match(work, /href="#projects"/);
+  assert.match(about, /href="#approach"/);
+});
+
+test("experience presents a clean, flowing career timeline", async () => {
+  const html = await render("/experience");
+  const styles = await readFile(new URL("../app/scroll-experience.css", import.meta.url), "utf8");
+  const timelineSource = await readFile(new URL("../app/experience/experience-timeline.tsx", import.meta.url), "utf8");
+
+  assert.match(html, /Professional experience\./);
+  assert.match(html, /class="career-hero-simple"/);
+  assert.doesNotMatch(html, /experience-hero-motion|experience-hero-orbit|experience-hero-comet/);
+  assert.match(html, /Career · 2009—Present/);
+  assert.match(html, /id="career-archive"/);
+  assert.doesNotMatch(html, /career-hero-register/);
+  assert.doesNotMatch(html, /career-role-list/);
+  assert.doesNotMatch(html, /career-next-step/);
+  assert.match(html, /class="career-process-layout"/);
+  assert.match(html, /class="career-process-track"/);
+  assert.equal((html.match(/class="career-step(?: career-step--ongoing)?(?: is-active)?"/g) ?? []).length, 7);
+  assert.match(html, /class="career-step career-step--ongoing is-active" aria-current="step"/);
+  assert.match(html, /class="career-step-number" aria-hidden="true">01</);
+  assert.match(html, /class="career-step-number" aria-hidden="true">07</);
+  assert.match(html, />Ongoing<\/span>/);
+  assert.match(html, /WordPress Developer &amp; Graphics Designer/);
+  assert.ok(
+    html.indexOf("Life Regeneration Church") < html.indexOf("Tradie — formerly Pro Tradesmen Club"),
+    "the current role should lead the timeline",
+  );
+  assert.match(styles, /Experience revision — a flowing timeline, intentionally free of grid and card layouts/);
+  assert.match(styles, /@keyframes experience-background-flow/);
+  assert.match(styles, /prefers-reduced-motion: no-preference[\s\S]*?\.experience-section::before/);
+  assert.doesNotMatch(styles, /experience-orbit-clockwise|experience-hero-comet/);
+  assert.match(styles, /\.career-process-sticky\s*\{[\s\S]*?position: sticky/);
+  assert.match(styles, /\.career-process-track > span\s*\{[\s\S]*?height: var\(--career-progress\)/);
+  assert.match(styles, /\.career-step\.is-active \.career-step-number/);
+  assert.match(styles, /@media \(max-width: 840px\)[\s\S]*?\.career-process-sticky\s*\{[\s\S]*?position: static/);
+  assert.match(timelineSource, /window\.requestAnimationFrame/);
+  assert.match(timelineSource, /window\.addEventListener\("scroll", requestUpdate/);
+  assert.match(timelineSource, /bounds\.top \+ bounds\.height \/ 2 - readingLine/);
+  assert.doesNotMatch(timelineSource, /ResizeObserver/);
+});
+
 test("the shared header uses document navigation that remains usable without the client router", async () => {
   const source = await readFile(new URL("../app/components/site-header.tsx", import.meta.url), "utf8");
   assert.doesNotMatch(source, /from ["']next\/link["']/);
   assert.match(source, /<a className="brand-logo-link" href="\/"/);
   assert.match(source, /<a href=\{item\.href\}/);
   assert.match(source, /<a className="signature-project-link" href="\/contact"/);
+});
+
+test("scroll reveals use viewport intersection without resize-observer loops", async () => {
+  const source = await readFile(new URL("../app/components/scroll-reveals.tsx", import.meta.url), "utf8");
+  const progress = await readFile(new URL("../app/components/scroll-progress.tsx", import.meta.url), "utf8");
+  assert.match(source, /new IntersectionObserver/);
+  assert.match(source, /\.scroll-chapter, \.site-footer/);
+  assert.match(source, /is-scroll-section-revealed/);
+  assert.match(source, /prefers-reduced-motion: reduce/);
+  assert.doesNotMatch(source, /ResizeObserver/);
+  assert.doesNotMatch(progress, /ResizeObserver/);
+});
+
+test("shared page surfaces use one responsive horizontal gutter", async () => {
+  const globals = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const scrollStyles = await readFile(new URL("../app/scroll-experience.css", import.meta.url), "utf8");
+  assert.match(globals, /--gj-page-gutter: clamp\(1\.25rem, 2\.4vw, 3rem\)/);
+  assert.match(globals, /--gj-content-max: 1660px/);
+  assert.match(scrollStyles, /\.signature-header-inner,[\s\S]*padding-left: var\(--gj-page-inset\)/);
+  for (const selector of [".hero", ".home-intro", ".home-featured", ".about-story", ".skills-section", ".experience-section", ".contact-section", ".home-contact-main", ".site-footer", ".work-gallery-heading", ".work-gallery-section"]) {
+    assert.ok(scrollStyles.includes(selector), `${selector} must use the shared page inset`);
+  }
+});
+
+test("public pages share one semantic heading scale and Work hero previews stay still on hover", async () => {
+  const globals = await readFile(new URL("../app/globals.css", import.meta.url), "utf8");
+  const scrollStyles = await readFile(new URL("../app/scroll-experience.css", import.meta.url), "utf8");
+
+  for (const token of ["page", "section", "feature", "card"]) {
+    assert.match(globals, new RegExp(`--gj-heading-${token}-size: clamp\\(`));
+    assert.match(scrollStyles, new RegExp(`font-size: var\\(--gj-heading-${token}-size\\)`));
+  }
+
+  for (const selector of [".hero h1", ".work-gallery-heading .work-hero-copy h1", ".career-hero-title", ".contact-copy h1"]) {
+    assert.ok(scrollStyles.includes(selector), `${selector} must use the shared page-heading role`);
+  }
+
+  assert.doesNotMatch(scrollStyles, /\.work-hero-preview:hover/);
+  assert.doesNotMatch(scrollStyles, /\.work-hero-preview:(?:hover|focus-visible) img/);
+  assert.match(scrollStyles, /\.work-hero-preview:focus-visible\s*\{[\s\S]*?outline:/);
+});
+
+test("homepage closes with a compact CTA and three accessible social profile links", async () => {
+  const html = await render("/");
+  const scrollStyles = await readFile(new URL("../app/scroll-experience.css", import.meta.url), "utf8");
+  const profiles = {
+    LinkedIn: "https://www.linkedin.com/in/grethiel-joy-carbadilla-61768242b/",
+    Instagram: "https://www.instagram.com/gre_thang?fbclid=IwY2xjawUv5vFleHRuA2FlbQIxMABwZG9mBWJyaWQRMW1pWFBFbnRhdVowTExuRWdzcnRjBmFwcF9pZBAyMjIwMzkxNzg4MjAwODkyAAEeXvBTg8p0SniZS2RvwIprynHsQmYo10ZfUT2NHTJE_hScPKqjoA-Gd0RY9F4_aem_13BmUlxe1ZMsOeA8GmP7HQ",
+    Facebook: "https://www.facebook.com/grethieljou.carbadilla",
+  };
+
+  assert.match(html, /Let’s make it <em>clear, useful, and ready to work\.<\/em>/);
+  assert.match(html, /<span>Start a project<\/span>/);
+  assert.equal((html.match(/target="_blank" rel="noreferrer"/g) ?? []).length, 3);
+  for (const [social, url] of Object.entries(profiles)) {
+    const escapedUrl = url.replaceAll("&", "&amp;");
+    assert.ok(html.includes(`href="${escapedUrl}" aria-label="${social}" title="${social}"`), `${social} needs its profile link`);
+  }
+  assert.doesNotMatch(html, /aria-label="X" title="X"/);
+
+  assert.match(scrollStyles, /\.home-contact-strip\.scroll-chapter\s*\{[\s\S]*?min-height: auto/);
+  assert.match(scrollStyles, /\.footer-social-links a\s*\{[\s\S]*?width: 44px;[\s\S]*?height: 44px/);
 });
 
 test("critical responsive images stay within performance budgets", async () => {
